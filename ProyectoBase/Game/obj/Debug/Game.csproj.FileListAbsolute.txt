@@ -38,3 +38,16 @@ C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\G
 C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\ship.png
 C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\location1.png
 C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Entity.cs
+C:\Projects\Paradigmas\ProyectoBase\Game\obj\Debug\Game.exe
+C:\Projects\Paradigmas\ProyectoBase\Game\obj\Debug\Game.pdb
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Engine.dll
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\DWI.png
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\location1.png
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\ship.png
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Entity.cs
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Game.cs
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Program.cs
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Game.exe
+C:\Projects\Paradigmas\ProyectoBase\Game\bin\Debug\Game.pdb
+C:\Projects\Paradigmas\ProyectoBase\Game\obj\Debug\Game.csproj.AssemblyReference.cache
+C:\Projects\Paradigmas\ProyectoBase\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache

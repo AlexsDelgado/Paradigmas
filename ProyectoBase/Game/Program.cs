@@ -13,6 +13,9 @@ namespace Game
         private static float delayTimer;
 
         public static List<Entity> entidades = new List<Entity>();
+        private static float movementSpeed;
+        private static string texturePlayer;
+        private static bool cambioTextura;
         
         
             
@@ -26,6 +29,9 @@ namespace Game
             Enemy enemigo2 = new Enemy("norberto","GameAssets/ship.png",10,1,1,10,50);
             entidades.Add(enemigo1);
             entidades.Add(enemigo2);
+            movementSpeed = 50;
+            texturePlayer = "GameAssets/ship.png";
+            cambioTextura = false;
             
             
             
@@ -53,21 +59,29 @@ namespace Game
                 //input
                 if (Engine.GetKey(Keys.S))
                 {
-                    yPos += 10*deltaTime;
+                    yPos += movementSpeed*deltaTime;
+                    cambioTextura = true;
+
                 }
                 if (Engine.GetKey(Keys.W))
                 {
-                    yPos -= 10*deltaTime;
+                    yPos -= movementSpeed*deltaTime;
+                    texturePlayer = "GameAssets/ship.png";
                 }
                 if (Engine.GetKey(Keys.A))
                 {
-                    xPos -= 10*deltaTime;
+                    xPos -= movementSpeed*deltaTime;
                 }
                 if (Engine.GetKey(Keys.D))
                 {
-                    xPos += 10*deltaTime;
+                    xPos += movementSpeed*deltaTime;
                 }
-                
+
+                if (cambioTextura)
+                {
+                    texturePlayer = "GameAssets/DWI.png";
+                    cambioTextura = false;
+                }
                 enemigo1.Movement(5);
                 enemigo2.Movement(1,1);
 
@@ -76,7 +90,7 @@ namespace Game
                 //render
                 Engine.Clear();
                 Engine.Draw("GameAssets/location1.png",0,0);
-                //Engine.Draw("GameAssets/DWI.png",xPos,yPos);
+                Engine.Draw(texturePlayer,xPos,yPos);
                 Engine.Draw(enemigo1.texture,enemigo1.xPos,enemigo1.yPos);
                 Engine.Draw(enemigo2.texture,enemigo2.xPos,enemigo2.yPos);
                 Engine.Show();
