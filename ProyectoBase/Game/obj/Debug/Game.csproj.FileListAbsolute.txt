@@ -1,0 +1,40 @@
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\bin\Debug\Engine.dll
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\bin\Debug\ship.png
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\bin\Debug\Game.exe
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\bin\Debug\Game.pdb
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\obj\Debug\Game.csproj.AssemblyReference.cache
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\obj\Debug\Game.exe
+P:\SPARDOX\ACADEMICO\UADE Materias\IOO\ProyectoBase\Game\obj\Debug\Game.pdb
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\ship.png
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.exe
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.pdb
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.csproj.AssemblyReference.cache
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.exe
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.pdb
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Engine.dll
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.cs
+C:\Users\augus\Downloads\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Program.cs
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Engine.dll
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\ship.png
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.cs
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Program.cs
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.exe
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\bin\Debug\Game.pdb
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.csprojAssemblyReference.cache
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.exe
+D:\Paradigmas de Programación\Paradigmas de Programación\ProyectoBase\Game\obj\Debug\Game.pdb
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\obj\Debug\Game.exe
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\obj\Debug\Game.pdb
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Engine.dll
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Game.cs
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Program.cs
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Game.exe
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Game.pdb
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\obj\Debug\Game.csproj.AssemblyReference.cache
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\DWI.png
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\ship.png
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\GameAssets\location1.png
+C:\Users\adelgado\Desktop\alexs\Proyectos programacion\Paradigmas\ProyectoBase\Game\bin\Debug\Entity.cs
