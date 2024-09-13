@@ -68,7 +68,7 @@ namespace Game
                     yPos += movementSpeed*deltaTime;
                     cambioTextura = true;
                     player.SetYPos(yPos);
-                    textureDirection = "GameAssets/ship.png";
+                    textureDirection = "GameAssets/movimiento1.png";
 
                 }
                 if (Engine.GetKey(Keys.W))
@@ -76,19 +76,21 @@ namespace Game
                     yPos -= movementSpeed*deltaTime;
                     player.SetYPos(yPos);
                     cambioTextura = true;
-                    textureDirection = "GameAssets/DWI.png";
+                    textureDirection = "GameAssets/movimiento2.png";
                 }
                 if (Engine.GetKey(Keys.A))
                 {
                     xPos -= movementSpeed*deltaTime;
                     player.SetXPos(xPos);
                     cambioTextura = true;
-                    textureDirection = "GameAssets/location1.png";
+                    textureDirection = "GameAssets/movimiento4.png";
                 }
                 if (Engine.GetKey(Keys.D))
                 {
                     xPos += movementSpeed*deltaTime;
                     player.SetXPos(xPos);
+                    cambioTextura = true;
+                    textureDirection = "GameAssets/movimiento3.png";
                 }
 
                 if (cambioTextura)
