@@ -16,6 +16,7 @@ namespace Game
         private static float movementSpeed;
         private static string texturePlayer;
         private static bool cambioTextura;
+        private static string textureDirection;
         
         
             
@@ -29,9 +30,14 @@ namespace Game
             Enemy enemigo2 = new Enemy("norberto","GameAssets/ship.png",10,1,1,10,50);
             entidades.Add(enemigo1);
             entidades.Add(enemigo2);
-            movementSpeed = 50;
+            movementSpeed = 100;
             texturePlayer = "GameAssets/ship.png";
+            textureDirection = "";
             cambioTextura = false;
+
+            Character player = new Character("Hero", "GameAssets/ship.png", 10, 1, 1, 50, 50);
+            
+            
             
             
             
@@ -51,7 +57,7 @@ namespace Game
                     delayTimer = 0;
                     foreach (var VARIABLE in entidades)
                     {
-                        Engine.Debug(VARIABLE.name);
+                        Engine.Debug(VARIABLE.GetName());
                     }
 
                 }
@@ -61,41 +67,49 @@ namespace Game
                 {
                     yPos += movementSpeed*deltaTime;
                     cambioTextura = true;
+                    player.SetYPos(yPos);
+                    textureDirection = "GameAssets/ship.png";
 
                 }
                 if (Engine.GetKey(Keys.W))
                 {
                     yPos -= movementSpeed*deltaTime;
-                    texturePlayer = "GameAssets/ship.png";
+                    player.SetYPos(yPos);
+                    cambioTextura = true;
+                    textureDirection = "GameAssets/DWI.png";
                 }
                 if (Engine.GetKey(Keys.A))
                 {
                     xPos -= movementSpeed*deltaTime;
+                    player.SetXPos(xPos);
+                    cambioTextura = true;
+                    textureDirection = "GameAssets/location1.png";
                 }
                 if (Engine.GetKey(Keys.D))
                 {
                     xPos += movementSpeed*deltaTime;
+                    player.SetXPos(xPos);
                 }
 
                 if (cambioTextura)
                 {
-                    texturePlayer = "GameAssets/DWI.png";
+                    //texturePlayer = textureDirection;
+                    player.SetTexture(textureDirection);
                     cambioTextura = false;
                 }
-                enemigo1.Movement(5);
-                enemigo2.Movement(1,1);
+                enemigo1.Movement(100);
+                enemigo2.Movement(0,-1);
 
                 
                 
                 //render
                 Engine.Clear();
                 Engine.Draw("GameAssets/location1.png",0,0);
-                Engine.Draw(texturePlayer,xPos,yPos);
-                Engine.Draw(enemigo1.texture,enemigo1.xPos,enemigo1.yPos);
-                Engine.Draw(enemigo2.texture,enemigo2.xPos,enemigo2.yPos);
+                //.Draw(texturePlayer,xPos,yPos);
+                Engine.Draw(player.GetTexture(),player.GetXPos(),player.GetYPos());
+                Engine.Draw(enemigo1.GetTexture(),enemigo1.GetXPos(),enemigo1.GetYPos());
+                Engine.Draw(enemigo2.GetTexture(),enemigo2.GetXPos(),enemigo2.GetYPos());
                 Engine.Show();
-                
-                
             }
         }
     }
