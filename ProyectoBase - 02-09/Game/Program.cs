@@ -1,8 +1,146 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Configuration;
 
 namespace Game
 {
+
+    public enum LevelType
+    {
+        Menu,
+        Level1,
+        Level2
+    }
+
+    public abstract class Level
+    {
+        protected Texture background;
+        protected LevelType levelType;
+
+        public LevelType LevelType => levelType;
+
+
+        public Level(Texture background, LevelType levelType)
+        {
+            this.background = background;
+            this.levelType = levelType;  
+        }
+
+        public abstract void Update();
+        public abstract void Render();
+    }
+
+    public class MenuLevel : Level
+    {
+        public MenuLevel(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
+    public class GameLevel1 : Level
+    {
+        public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
+
+    public class GameLevel2 : Level
+    {
+        public GameLevel2(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
+
+
+    public class GameManager
+    {
+        private static GameManager instance;
+        public static GameManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameManager();   
+                }
+                return instance;
+            }
+        }
+
+        private Level currentLevel;
+
+        private GameManager()
+        {
+            ChangeLevel(LevelType.Menu);
+        }
+
+        public void ChangeLevel(LevelType levelType)
+        {
+            if (currentLevel != null)
+            {
+                currentLevel = null;
+            }
+
+
+            switch (levelType)
+            {
+                case LevelType.Menu:
+                    currentLevel = new MenuLevel(Engine.GetTexture("Textures/Background.png"), LevelType.Menu);
+                    break;
+                case LevelType.Level1:
+                    currentLevel = new GameLevel1(Engine.GetTexture("Textures/Screens/Level.png"), LevelType.Level1);
+                    break;
+                case LevelType.Level2:
+                    currentLevel = new GameLevel2(Engine.GetTexture("Textures/Screens/Win.png"), LevelType.Level2);
+                    break;
+            }
+        }
+
+        public void Update()
+        {
+            currentLevel.Update();
+        }
+
+        public void Render()
+        {
+            currentLevel.Render(); 
+        }
+    }
+
     public class Program
     {
         public static float deltaTime;
@@ -102,11 +240,24 @@ namespace Game
                 enemigo1.Movement(100);
                 enemigo2.Movement(0,-1);
 
-                
-                
+                if (Engine.GetKey(Keys.Num1))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Menu);
+                }
+
+                if (Engine.GetKey(Keys.Num2))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Level1);
+                }
+
+                if (Engine.GetKey(Keys.Num3))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Level2);
+                }
+
                 //render
                 Engine.Clear();
-                Engine.Draw("GameAssets/location1.png",0,0);
+                GameManager.Instance.Render();
                 //.Draw(texturePlayer,xPos,yPos);
                 Engine.Draw(player.GetTexture(),player.GetXPos(),player.GetYPos());
                 Engine.Draw(enemigo1.GetTexture(),enemigo1.GetXPos(),enemigo1.GetYPos());
