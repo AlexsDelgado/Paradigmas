@@ -42,6 +42,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="LevelManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CollisionsUtilities.cs" />
     <Compile Include="Time.cs" />
