@@ -95,9 +95,10 @@ namespace Game
         }
 
         //matar entidad
+      
         private void Kill()
         {
-            Engine.Debug(name+" no puede continuar el combate");
+            Engine.Debug(name + " no puede continuar el combate");
         }
     }
 

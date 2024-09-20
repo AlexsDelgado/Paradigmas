@@ -9,7 +9,10 @@
     {
         Menu,
         Level1,
-        Level2
+        Level2,
+        FightScene,
+        WinScene,
+        LoseScene
     }
 
     public abstract class Level 
@@ -85,4 +88,61 @@
     }
 
 
+    public class FightScene : Level
+    {
+        public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
+
+
+    public class LoseLevel : Level
+    {
+        public LoseLevel(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
+
+    public class WinLevel : Level
+    {
+        public WinLevel(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
 }

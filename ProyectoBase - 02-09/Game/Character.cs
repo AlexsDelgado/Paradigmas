@@ -18,7 +18,11 @@ namespace Game
             xPos = newXPos;
             yPos = newYPos;
         }
-        
-        
+
+        private void PlayerDefeat()
+        {
+                GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+        }
+
     }
 }

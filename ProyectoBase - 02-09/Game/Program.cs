@@ -41,10 +41,19 @@ namespace Game
                     currentLevel = new MenuLevel(Engine.GetTexture("Textures/Background.png"), LevelType.Menu);
                     break;
                 case LevelType.Level1:
-                    currentLevel = new GameLevel1(Engine.GetTexture("Textures/Screens/Level.png"), LevelType.Level1);
+                    currentLevel = new GameLevel1(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Level1);
                     break;
                 case LevelType.Level2:
                     currentLevel = new GameLevel2(Engine.GetTexture("Textures/Screens/Win.png"), LevelType.Level2);
+                    break;
+                case LevelType.FightScene:
+                    currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);
+                    break;
+                case LevelType.WinScene:
+                    currentLevel = new WinLevel(Engine.GetTexture("GameAssets/Pantallas/YouWin.png"), LevelType.WinScene);
+                    break;
+                case LevelType.LoseScene:
+                    currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/YouLose.png"), LevelType.LoseScene);
                     break;
             }
         }
@@ -92,7 +101,8 @@ namespace Game
             textureDirection = "";
             cambioTextura = false;
 
-            Character player = new Character("Hero", "GameAssets/ship.png", 10, 1, 1, 50, 50);
+            Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
+            Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
             
             
             

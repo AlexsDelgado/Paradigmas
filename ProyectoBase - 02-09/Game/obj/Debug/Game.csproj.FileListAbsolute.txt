@@ -302,3 +302,8 @@ C:\Projects\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.csproj.AssemblyR
 C:\Projects\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
 C:\Projects\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.exe
 C:\Projects\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.pdb
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\YouLose.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\YouWin.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\Forest.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\mapa1.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\Bad1.png
