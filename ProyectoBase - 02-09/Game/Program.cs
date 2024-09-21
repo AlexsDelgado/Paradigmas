@@ -103,8 +103,8 @@ namespace Game
 
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
             Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
-            
-            
+
+
             
             
             
@@ -128,6 +128,8 @@ namespace Game
                     }
 
                 }
+
+                GameManager.Instance.Update();
                 
                 //input
                 if (Engine.GetKey(Keys.S))
