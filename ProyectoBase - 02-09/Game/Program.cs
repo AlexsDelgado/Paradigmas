@@ -100,6 +100,12 @@ namespace Game
             texturePlayer = "GameAssets/ship.png";
             textureDirection = "";
             cambioTextura = false;
+            float screenWidth = 800;
+            float screenHeight = 600;
+            float playerWidth = 20;  
+            float playerHeight = 20; 
+
+
 
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
             Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
@@ -157,6 +163,14 @@ namespace Game
                     cambioTextura = true;
                     textureDirection = "GameAssets/movimiento3.png";
                 }
+
+         
+                xPos = PositionUtilities.Clamp(xPos, 0, screenWidth - playerWidth);
+                yPos = PositionUtilities.Clamp(yPos, 0, screenHeight - playerHeight);
+
+                player.SetXPos(xPos);
+                player.SetYPos(yPos);
+
 
                 if (cambioTextura)
                 {
