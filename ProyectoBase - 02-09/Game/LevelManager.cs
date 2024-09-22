@@ -60,21 +60,21 @@ namespace Game
             }
 
           
-            Engine.Draw(Engine.GetTexture("GameAssets/ship.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
+            Engine.Draw(Engine.GetTexture("GameAssets/ship.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos() -50);
         }
 
         public override void Update()
         {
-            if (Engine.GetKey(Keys.H))
+            if (Engine.GetKey(Keys.RIGHT))
             {
                 //selectedButtonIndex = (selectedButtonIndex + 1) % buttons.Count;
                 selectedButtonIndex++;
-                if(selectedButtonIndex > 1)
+                if (selectedButtonIndex > 1)
                 {
                     selectedButtonIndex = 1;
                 }
             }
-            else if (Engine.GetKey(Keys.G))
+            else if (Engine.GetKey(Keys.LEFT))
             {
                 //selectedButtonIndex = (selectedButtonIndex - 1 + buttons.Count) % buttons.Count;
                 selectedButtonIndex--;
