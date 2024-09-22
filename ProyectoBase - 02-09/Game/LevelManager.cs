@@ -101,6 +101,11 @@ namespace Game
     }
     public class GameLevel1 : Level 
     {
+        private Character player;
+        private Enemy enemigo1;
+        private Enemy enemigo2;
+        private List<Entity> entities;
+
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
 

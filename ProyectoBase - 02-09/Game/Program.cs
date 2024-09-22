@@ -20,7 +20,7 @@ namespace Game
             }
         }
 
-        private Level currentLevel;
+        public Level currentLevel;
 
         private GameManager()
         {
@@ -186,9 +186,12 @@ namespace Game
                 Engine.Clear();
                 GameManager.Instance.Render();
                 //.Draw(texturePlayer,xPos,yPos);
-                Engine.Draw(player.GetTexture(),player.GetXPos(),player.GetYPos());
-                Engine.Draw(enemigo1.GetTexture(),enemigo1.GetXPos(),enemigo1.GetYPos());
-                Engine.Draw(enemigo2.GetTexture(),enemigo2.GetXPos(),enemigo2.GetYPos());
+                if (GameManager.Instance.currentLevel is GameLevel1)
+                {
+                    Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+                    Engine.Draw(enemigo1.GetTexture(), enemigo1.GetXPos(), enemigo1.GetYPos());
+                    Engine.Draw(enemigo2.GetTexture(), enemigo2.GetYPos(), enemigo2.GetYPos());
+                }
                 Engine.Show();
             }
         }
