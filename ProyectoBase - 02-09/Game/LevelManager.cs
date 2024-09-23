@@ -45,8 +45,8 @@ namespace Game
 
         public MenuLevel(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            playButton = new Button("Jugar", Engine.GetTexture("Textures/Buttons/Play/PlayButton1.png"), 0, 200);
-            exitButton = new Button("Salir", Engine.GetTexture("Textures/Buttons/Quit/QuitButton1.png"), 300, 400);
+            playButton = new Button("Jugar", Engine.GetTexture("Textures/Buttons/Play/PlayButton1.png"), 0, 500);
+            exitButton = new Button("Salir", Engine.GetTexture("Textures/Buttons/Quit/QuitButton1.png"), 400, 500);
             buttons = new List<Button> { playButton, exitButton };
             selectedButtonIndex = 0;
         }
@@ -61,7 +61,7 @@ namespace Game
             }
 
           
-            Engine.Draw(Engine.GetTexture("GameAssets/ship.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos() -50);
+            Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
         }
 
         public override void Update()
@@ -150,8 +150,8 @@ namespace Game
         {
             player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 100, 400);
             enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100, 8, 2, 400, 100);
-            attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Play/PlayButton1.png"), 100, 500);
-            fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Quit/QuitButton1.png"), 300, 500);
+            attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
+            fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Flee/FleeButton1.png"), 400, 500);
             buttons = new List<Button> { attackButton, fleeButton };
             selectedButtonIndex = 0;
             isPlayerTurn = true;
@@ -171,7 +171,7 @@ namespace Game
             {
                 button.Render();
             }
-            Engine.Draw(Engine.GetTexture("GameAssets/ship.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos() - 50);
+            Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
         }
 
         public override void Update()
