@@ -307,3 +307,6 @@ C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\Forest.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\mapa1.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\Bad1.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\teclaE.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\barra1.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\barra2.png

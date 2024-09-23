@@ -4,7 +4,6 @@ using System.Net.Configuration;
 
 namespace Game
 {
-
     public class GameManager
     {
         private static GameManager instance;
@@ -83,10 +82,12 @@ namespace Game
         private static string texturePlayer;
         private static bool cambioTextura;
         private static string textureDirection;
-        
-        
-            
-        static void Main(string[] args)
+        private static bool isNearJohn;
+        private static Texture healthBarBackground;
+        private static Texture healthBarFill;
+
+
+         static void Main(string[] args)
         {
             Engine.Initialize();
             startTime = DateTime.Now;
@@ -102,15 +103,17 @@ namespace Game
             cambioTextura = false;
             float screenWidth = 800;
             float screenHeight = 600;
-            float playerWidth = 20;  
+            float playerWidth = 20;
             float playerHeight = 20; 
-
-
 
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
             Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
+            npc John = new npc("John", "GameAssets/movimiento1.png", 10, 1, 1, 400, 200);
 
-            while(true)
+            healthBarBackground = Engine.GetTexture("GameAssets/Assets/barra1.png");
+            healthBarFill = Engine.GetTexture("GameAssets/Assets/barra2.png");
+
+            while (true)
             {
                 
              //DeltaTime + delay
@@ -132,7 +135,10 @@ namespace Game
                 }
 
                 GameManager.Instance.Update();
-                
+
+                player.SetHp(player.GetHp() - 1 * deltaTime);
+                if (player.GetHp() < 0) player.SetHp(0); 
+
                 //input
                 if (Engine.GetKey(Keys.S))
                 {
@@ -163,8 +169,11 @@ namespace Game
                     cambioTextura = true;
                     textureDirection = "GameAssets/movimiento3.png";
                 }
+                if (Engine.GetKey(Keys.Num1))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Menu);
+                }
 
-         
                 xPos = PositionUtilities.Clamp(xPos, 0, screenWidth - playerWidth);
                 yPos = PositionUtilities.Clamp(yPos, 0, screenHeight - playerHeight);
 
@@ -181,19 +190,15 @@ namespace Game
                 enemigo1.Movement(100);
                 enemigo2.Movement(0,-1);
 
-                if (Engine.GetKey(Keys.Num1))
-                {
-                    GameManager.Instance.ChangeLevel(LevelType.Menu);
-                }
+                isNearJohn = CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
+                new Vector2(John.GetXPos(), John.GetYPos()), new Vector2(50, 50));
 
-                if (Engine.GetKey(Keys.Num2))
-                {
-                    GameManager.Instance.ChangeLevel(LevelType.Level1);
-                }
 
-                if (Engine.GetKey(Keys.Num3))
+                
+                if (isNearJohn && Engine.GetKey(Keys.E))
                 {
-                    GameManager.Instance.ChangeLevel(LevelType.Level2);
+                    Engine.Debug("Debes seguir tu camino");
                 }
 
                 //render
@@ -202,12 +207,37 @@ namespace Game
                 //.Draw(texturePlayer,xPos,yPos);
                 if (GameManager.Instance.currentLevel is GameLevel1)
                 {
+                    DrawHealthBar(player);
                     Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
                     Engine.Draw(enemigo1.GetTexture(), enemigo1.GetXPos(), enemigo1.GetYPos());
                     Engine.Draw(enemigo2.GetTexture(), enemigo2.GetYPos(), enemigo2.GetYPos());
+                    Engine.Draw(John.GetTexture(), John.GetXPos(), John.GetYPos());
+
+                    if (isNearJohn)
+                    {
+                        Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), John.GetXPos(), John.GetYPos() - 20);
+                    }
                 }
                 Engine.Show();
             }
+
+
         }
+
+        private static void DrawHealthBar(Character player)
+        {
+            float maxHealth = 10;
+            float currentHealth = player.GetHp();
+            float healthPercentage = currentHealth / maxHealth;
+
+            float healthBarX = 10;
+            float healthBarY = 10;
+            float healthBarWidth = 200;
+            float healthBarHeight = 20;
+
+            Engine.Draw(healthBarBackground, healthBarX, healthBarY, healthBarWidth / healthBarBackground.Width, healthBarHeight / healthBarBackground.Height);
+            Engine.Draw(healthBarFill, healthBarX, healthBarY, (healthBarWidth * healthPercentage) / healthBarFill.Width, healthBarHeight / healthBarFill.Height);
+        }
+
     }
 }

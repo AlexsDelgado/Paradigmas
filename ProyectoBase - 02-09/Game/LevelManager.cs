@@ -109,12 +109,10 @@ namespace Game
         public override void Render()
         {
             Engine.Draw(background);
-
         }
 
         public override void Update()
         {
-
         }
     }
     public class GameLevel2 : Level 
