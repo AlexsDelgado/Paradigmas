@@ -310,3 +310,4 @@ C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\teclaE.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\barra1.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\barra2.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\cartel.png

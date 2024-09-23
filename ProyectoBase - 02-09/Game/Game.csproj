@@ -43,6 +43,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Items.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="npc.cs" />
     <Compile Include="PositionUtilities.cs" />
@@ -58,6 +59,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Assets\barra2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\cartel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Assets\teclaE.png">

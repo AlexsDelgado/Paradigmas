@@ -83,6 +83,7 @@ namespace Game
         private static bool cambioTextura;
         private static string textureDirection;
         private static bool isNearJohn;
+        private static bool isNearSign;
         private static Texture healthBarBackground;
         private static Texture healthBarFill;
 
@@ -109,6 +110,7 @@ namespace Game
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
             Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
             npc John = new npc("John", "GameAssets/movimiento1.png", 10, 1, 1, 400, 200);
+            Items Cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
 
             healthBarBackground = Engine.GetTexture("GameAssets/Assets/barra1.png");
             healthBarFill = Engine.GetTexture("GameAssets/Assets/barra2.png");
@@ -134,12 +136,11 @@ namespace Game
 
                 }
 
+
+                //UPDATE
                 GameManager.Instance.Update();
 
-                player.SetHp(player.GetHp() - 1 * deltaTime);
-                if (player.GetHp() < 0) player.SetHp(0); 
-
-                //input
+                //INPUT
                 if (Engine.GetKey(Keys.S))
                 {
                     yPos += movementSpeed*deltaTime;
@@ -169,6 +170,7 @@ namespace Game
                     cambioTextura = true;
                     textureDirection = "GameAssets/movimiento3.png";
                 }
+
                 if (Engine.GetKey(Keys.Num1))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.Menu);
@@ -194,29 +196,56 @@ namespace Game
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
                 new Vector2(John.GetXPos(), John.GetYPos()), new Vector2(50, 50));
 
+                isNearSign = CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
+                new Vector2(Cartel.GetXPos(), Cartel.GetYPos()), new Vector2(50, 50));
 
-                
                 if (isNearJohn && Engine.GetKey(Keys.E))
                 {
                     Engine.Debug("Debes seguir tu camino");
                 }
 
-                //render
+                if (isNearSign && Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Level2);
+                }
+
+                //RENDER
                 Engine.Clear();
                 GameManager.Instance.Render();
                 //.Draw(texturePlayer,xPos,yPos);
+
+                if (GameManager.Instance.currentLevel is MenuLevel)
+                {
+                    Engine.Clear();
+                    GameManager.Instance.Render();
+                }
+
                 if (GameManager.Instance.currentLevel is GameLevel1)
                 {
+                    Engine.Clear();
+                    GameManager.Instance.Render();
                     DrawHealthBar(player);
                     Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
                     Engine.Draw(enemigo1.GetTexture(), enemigo1.GetXPos(), enemigo1.GetYPos());
                     Engine.Draw(enemigo2.GetTexture(), enemigo2.GetYPos(), enemigo2.GetYPos());
                     Engine.Draw(John.GetTexture(), John.GetXPos(), John.GetYPos());
+                    Engine.Draw(Cartel.GetTexture(), Cartel.GetXPos(), Cartel.GetYPos());
 
                     if (isNearJohn)
                     {
                         Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), John.GetXPos(), John.GetYPos() - 20);
                     }
+
+                    if (isNearSign)
+                    {
+                        Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), Cartel.GetXPos(), Cartel.GetYPos() - 20);
+                    }
+                }
+                if(GameManager.Instance.currentLevel is GameLevel2)
+                {
+                    Engine.Clear();
+                    GameManager.Instance.Render();
                 }
                 Engine.Show();
             }
