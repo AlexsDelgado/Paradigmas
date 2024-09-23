@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -137,8 +138,23 @@ namespace Game
 
     public class FightScene : Level
     {
+        private Character player;
+        private Enemy enemy;
+        private Button attackButton;
+        private Button fleeButton;
+        private int selectedButtonIndex;
+        private List<Button> buttons;
+        private bool isPlayerTurn;
+
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
+            player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 100, 400);
+            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100, 8, 2, 400, 100);
+            attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Play/PlayButton1.png"), 100, 500);
+            fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Quit/QuitButton1.png"), 300, 500);
+            buttons = new List<Button> { attackButton, fleeButton };
+            selectedButtonIndex = 0;
+            isPlayerTurn = true;
 
         }
 
@@ -146,11 +162,86 @@ namespace Game
         {
             Engine.Draw(background);
 
+            //Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+            //Engine.Draw(enemy.GetTexture(), enemy.GetXPos(), enemy.GetYPos());
+
+            DrawHealthBar(player, 10, 10); 
+            DrawHealthBar(enemy, enemy.GetXPos()-50, enemy.GetYPos()); 
+            foreach (var button in buttons)
+            {
+                button.Render();
+            }
+            Engine.Draw(Engine.GetTexture("GameAssets/ship.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos() - 50);
         }
 
         public override void Update()
         {
+            if (isPlayerTurn)
+            {
+                HandlePlayerTurn();
+            }
+            else
+            {
+                HandleEnemyTurn(); 
+            }
+        }
 
+        private void HandlePlayerTurn()
+        {
+            if (Engine.GetKey(Keys.RIGHT))
+            {
+                selectedButtonIndex = Math.Min(selectedButtonIndex + 1, buttons.Count - 1);
+            }
+            else if (Engine.GetKey(Keys.LEFT))
+            {
+                selectedButtonIndex = Math.Max(selectedButtonIndex - 1, 0);
+            }
+            if (Engine.GetKey(Keys.SPACE))
+            {
+                if (selectedButtonIndex == 0) 
+                {
+                    float damage = player.GetStr();
+                    enemy.GetDamage(damage);
+                    if (enemy.GetHp() <= 0)
+                    {
+                        GameManager.Instance.ChangeLevel(LevelType.WinScene);
+                    }
+                    else
+                    {
+                        isPlayerTurn = false; 
+                    }
+                }
+                else if (selectedButtonIndex == 1)
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+                }
+            }
+        }
+
+        private void HandleEnemyTurn()
+        {
+            float damage = enemy.GetStr();
+            player.GetDamage(damage);
+            if (player.GetHp() <= 0)
+            {
+                GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+            }
+            else
+            {
+                isPlayerTurn = true;
+            }
+        }
+        private void DrawHealthBar(Entity entity, float xPos, float yPos)
+        {
+            float maxHealth = 100;
+            float currentHealth = entity.GetHp();
+            float healthPercentage = currentHealth / maxHealth;
+
+            float healthBarWidth = 100;
+            float healthBarHeight = 20;
+
+            Engine.Draw(Engine.GetTexture("GameAssets/Assets/barra1.png"), xPos, yPos, healthBarWidth / 200, healthBarHeight / 20);
+            Engine.Draw(Engine.GetTexture("GameAssets/Assets/barra2.png"), xPos, yPos, (healthBarWidth * healthPercentage) / 200, healthBarHeight / 20);
         }
     }
 

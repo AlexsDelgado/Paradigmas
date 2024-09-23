@@ -43,7 +43,7 @@ namespace Game
                     currentLevel = new GameLevel1(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Level1);
                     break;
                 case LevelType.Level2:
-                    currentLevel = new GameLevel2(Engine.GetTexture("Textures/Screens/Win.png"), LevelType.Level2);
+                    currentLevel = new GameLevel2(Engine.GetTexture("GameAssets/Pantallas/mapa2.png"), LevelType.Level2);
                     break;
                 case LevelType.FightScene:
                     currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);
@@ -84,6 +84,7 @@ namespace Game
         private static string textureDirection;
         private static bool isNearJohn;
         private static bool isNearSign;
+        private static bool isNearEnemy;
         private static Texture healthBarBackground;
         private static Texture healthBarFill;
 
@@ -94,10 +95,6 @@ namespace Game
             startTime = DateTime.Now;
             xPos = 0;
             yPos = 0;
-            Enemy enemigo1 = new Enemy("jose","GameAssets/ship.png",10,1,1,10,10);
-            Enemy enemigo2 = new Enemy("norberto","GameAssets/ship.png",10,1,1,10,50);
-            entidades.Add(enemigo1);
-            entidades.Add(enemigo2);
             movementSpeed = 100;
             texturePlayer = "GameAssets/ship.png";
             textureDirection = "";
@@ -108,7 +105,7 @@ namespace Game
             float playerHeight = 20; 
 
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
-            Enemy badGuy1 = new Enemy("Mavado", "GameAssets/Bad1.png", 5, 2, 2, 50, 50);
+            Enemy badGuy1 = new Enemy("Mavado", "GameAssets/enemigo1.png", 5, 2, 2, 500, 50);
             npc John = new npc("John", "GameAssets/movimiento1.png", 10, 1, 1, 400, 200);
             Items Cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
 
@@ -135,7 +132,6 @@ namespace Game
                     }
 
                 }
-
 
                 //UPDATE
                 GameManager.Instance.Update();
@@ -179,8 +175,8 @@ namespace Game
                 xPos = PositionUtilities.Clamp(xPos, 0, screenWidth - playerWidth);
                 yPos = PositionUtilities.Clamp(yPos, 0, screenHeight - playerHeight);
 
-                player.SetXPos(xPos);
-                player.SetYPos(yPos);
+                //player.SetXPos(xPos);
+                //player.SetYPos(yPos);
 
 
                 if (cambioTextura)
@@ -189,8 +185,6 @@ namespace Game
                     player.SetTexture(textureDirection);
                     cambioTextura = false;
                 }
-                enemigo1.Movement(100);
-                enemigo2.Movement(0,-1);
 
                 isNearJohn = CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
@@ -200,6 +194,10 @@ namespace Game
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
                 new Vector2(Cartel.GetXPos(), Cartel.GetYPos()), new Vector2(50, 50));
 
+                isNearEnemy = CollisionsUtilities.IsBoxColliding(
+               new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(playerWidth, playerHeight),
+               new Vector2(badGuy1.GetXPos(), badGuy1.GetYPos()), new Vector2(50, 50));
+
                 if (isNearJohn && Engine.GetKey(Keys.E))
                 {
                     Engine.Debug("Debes seguir tu camino");
@@ -208,6 +206,11 @@ namespace Game
                 if (isNearSign && Engine.GetKey(Keys.E))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.Level2);
+                }
+
+                if (isNearEnemy && Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.FightScene);
                 }
 
                 //RENDER
@@ -225,12 +228,10 @@ namespace Game
                 {
                     Engine.Clear();
                     GameManager.Instance.Render();
-                    DrawHealthBar(player);
                     Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
-                    Engine.Draw(enemigo1.GetTexture(), enemigo1.GetXPos(), enemigo1.GetYPos());
-                    Engine.Draw(enemigo2.GetTexture(), enemigo2.GetYPos(), enemigo2.GetYPos());
                     Engine.Draw(John.GetTexture(), John.GetXPos(), John.GetYPos());
                     Engine.Draw(Cartel.GetTexture(), Cartel.GetXPos(), Cartel.GetYPos());
+                    DrawHealthBar(player);
 
                     if (isNearJohn)
                     {
@@ -246,11 +247,22 @@ namespace Game
                 {
                     Engine.Clear();
                     GameManager.Instance.Render();
+                    Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+                    Engine.Draw(badGuy1.GetTexture(), badGuy1.GetXPos(), badGuy1.GetYPos());
+                    DrawHealthBar(player);
+                    if (isNearEnemy)
+                    {
+                        Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), badGuy1.GetXPos(), badGuy1.GetYPos() - 20);
+                    }
+                }
+                if (GameManager.Instance.currentLevel is FightScene)
+                {
+                    Engine.Clear();
+                    GameManager.Instance.Render();
+                    Engine.Draw("GameAssets/Personajes/Bad1.png", 200, 100);
                 }
                 Engine.Show();
             }
-
-
         }
 
         private static void DrawHealthBar(Character player)
