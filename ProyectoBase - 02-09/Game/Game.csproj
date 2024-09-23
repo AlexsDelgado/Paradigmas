@@ -41,20 +41,58 @@
     <Compile Include="Button.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyController.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="FightScene.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameLevel1.cs" />
+    <Compile Include="GameLevel2.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="Items.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="LevelManager.cs" />
+    <Compile Include="LevelType.cs" />
+    <Compile Include="LoseLevel.cs" />
+    <Compile Include="MenuLevel.cs" />
     <Compile Include="npc.cs" />
+    <Compile Include="NPCController.cs" />
+    <Compile Include="PlayerController.cs" />
     <Compile Include="PositionUtilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CollisionsUtilities.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="TimeManager.cs" />
     <Compile Include="TransformData.cs" />
+    <Compile Include="UIManager.cs" />
     <Compile Include="Vector2.cs" />
+    <Compile Include="WinLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dragon_Warrior_I__II.png" />
+    <Content Include="GameAssets\Animation\frame1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Animation\frame8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Assets\barra1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

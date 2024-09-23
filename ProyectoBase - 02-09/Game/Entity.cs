@@ -2,8 +2,6 @@ namespace Game
 {
     public class Entity
     {
-   
-
         protected string name;
         protected string texture;
         protected float hp;
