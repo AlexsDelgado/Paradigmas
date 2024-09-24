@@ -24,7 +24,7 @@ namespace Game
                 new Vector2(npcController.GetNPC().GetXPos(), npcController.GetNPC().GetYPos()),
                 new Vector2(50, 50)))
             {
-                Engine.Debug("Cerca de John. Presiona E para interactuar.");
+                Engine.Debug("COLISIONANDO");
             }
 
             if (CollisionsUtilities.IsBoxColliding(

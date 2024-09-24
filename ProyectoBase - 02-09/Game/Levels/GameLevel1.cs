@@ -27,6 +27,7 @@ namespace Game
             float deltaTime = timeManager.GetDeltaTime();
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
+
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                 new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
@@ -34,6 +35,16 @@ namespace Game
                 if (Engine.GetKey(Keys.E))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.Level2);
+                }
+            }
+
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                new Vector2(john.GetXPos(), john.GetYPos()), new Vector2(50, 50)))
+            {
+                if (Engine.GetKey(Keys.E))
+                {
+                    Engine.Debug("Ir al cartel");
                 }
             }
         }
@@ -45,12 +56,14 @@ namespace Game
             Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
             Engine.Draw(john.GetTexture(), john.GetXPos(), john.GetYPos());
             Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
+
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                 new Vector2(john.GetXPos(), john.GetYPos()), new Vector2(50, 50)))
             {
                 Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), john.GetXPos(), john.GetYPos() - 20);
             }
+
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                 new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))

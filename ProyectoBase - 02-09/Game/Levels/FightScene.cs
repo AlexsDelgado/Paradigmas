@@ -20,7 +20,7 @@ namespace Game
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
             player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 100, 400);
-            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100, 8, 2, 400, 100);
+            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
 
 
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
@@ -40,7 +40,7 @@ namespace Game
             Engine.GetTexture("GameAssets/Animation/frame7.png"),
             Engine.GetTexture("GameAssets/Animation/frame8.png")
         };
-            enemyIdleAnimation = new Animation("EnemyIdle", enemyIdleFrames, 0.1f, true);
+            enemyIdleAnimation = new Animation("EnemyIdle", enemyIdleFrames, 1f, true);
         }
 
         public override void Update()
@@ -62,10 +62,12 @@ namespace Game
         {
             Engine.Draw(background);
             Engine.Draw(enemyIdleAnimation.CurrentFrame, enemy.GetXPos(), enemy.GetYPos());
+
             foreach (var button in buttons)
             {
                 button.Render();
             }
+
             Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
             DrawHealthBar(player, 10, 10);
             DrawHealthBar(enemy, enemy.GetXPos() - 50, enemy.GetYPos() - 30);

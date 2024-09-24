@@ -88,7 +88,7 @@ namespace Game
             }
             else
             {
-                Engine.Debug("A "+name+"le queda "+hp+" restante");    
+                Engine.Debug("A "+name+" le queda "+hp+" de vida restante");    
             }
         }
 

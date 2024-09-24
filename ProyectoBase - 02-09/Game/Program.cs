@@ -15,7 +15,7 @@ namespace Game
             PlayerController playerController = new PlayerController(player);
             NPCController npcController = new NPCController(john);
             EnemyController enemyController = new EnemyController(badGuy1);
-            TimeManager timeManager = new TimeManager();  // Instancia global de TimeManager
+            TimeManager timeManager = new TimeManager();
             LevelManager levelManager = new LevelManager(playerController, npcController, enemyController);
             UIManager uiManager = new UIManager(Engine.GetTexture("GameAssets/Assets/barra1.png"), Engine.GetTexture("GameAssets/Assets/barra2.png"));
 
@@ -30,7 +30,7 @@ namespace Game
                 //RENDER
                 Engine.Clear();
                 GameManager.Instance.Render();
-                uiManager.DrawHealthBar(player);
+                //uiManager.DrawHealthBar(player);
                 Engine.Show();
             }
         }
