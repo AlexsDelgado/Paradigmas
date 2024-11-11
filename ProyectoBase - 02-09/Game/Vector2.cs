@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using System;
+
+namespace Game
 {
     public struct Vector2
     {
@@ -42,6 +44,11 @@
         public static bool operator != (Vector2 vector1, Vector2 vector2)
         {
             return vector1.X != vector2.X || vector1.Y != vector2.Y;
+        }
+
+        public static implicit operator Vector2((int, int) v)
+        {
+            throw new NotImplementedException();
         }
 
         public override string ToString()

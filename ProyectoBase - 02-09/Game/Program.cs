@@ -10,6 +10,7 @@ namespace Game
         {
             Engine.Initialize();
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 10, 1, 1, 50, 50);
+
             npc john = new npc("John", "GameAssets/movimiento1.png", 10, 1, 1, 400, 200);
             Enemy badGuy1 = new Enemy("Mavado", "GameAssets/enemigo1.png", 5, 2, 2, 500, 50);
             PlayerController playerController = new PlayerController(player);
@@ -30,6 +31,7 @@ namespace Game
                 //RENDER
                 Engine.Clear();
                 GameManager.Instance.Render();
+                //player.CharacterDraw();
                 //uiManager.DrawHealthBar(player);
                 Engine.Show();
             }

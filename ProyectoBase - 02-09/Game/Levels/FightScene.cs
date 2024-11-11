@@ -21,6 +21,7 @@ namespace Game
         {
             player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 100, 400);
             enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
+            //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
 
 
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);

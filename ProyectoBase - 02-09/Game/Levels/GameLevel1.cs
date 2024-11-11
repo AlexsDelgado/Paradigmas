@@ -12,10 +12,15 @@ namespace Game
         private npc john;
         private Items cartel;
         private TimeManager timeManager;
+        private TransformData spawnPoint;
+        
 
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
+            //spawnPoint.SetPosition(50, 50);
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            //Character player = new Character("Hero", 100, 10, 5, spawnPoint);
+            //player.CreateCharacter(spawnPoint, "GameAssets/Movimiento1.png");
             playerController = new PlayerController(player);
             john = new npc("John", "GameAssets/movimiento1.png", 50, 1, 1, 400, 200);
             cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);

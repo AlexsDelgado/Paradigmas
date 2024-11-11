@@ -13,7 +13,23 @@ namespace Game
             base.xPos = xPos;
             base.yPos = yPos;
         }
+        public Enemy(string _name, string _texture, float _hp, float _str, float _spd, TransformData _transform) : base(_name,
+             _texture, _hp, _str, _spd, _transform)
+        {
+            //base.name = name;
+            //base.texture = texture;
+            //base.hp = hp;
+            //base.str = str;
+            //base.spd = spd;
+            //base.transform = _transform;
+            base.name = name;
+            base.hp = hp;
+            base.str = str;
+            base.spd = spd;
+            base.transform = transform;
 
+
+        }
         public void Movement(int x, int y)
         {
             xPos += x;

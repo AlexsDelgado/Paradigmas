@@ -11,12 +11,16 @@ namespace Game
         private PlayerController playerController;
         private Enemy badGuy;
         private TimeManager timeManager;
+        private TransformData SpawnPointEnemy;
+
 
         public GameLevel2(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
+            //SpawnPointEnemy.SetPosition(400, 300);
             Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
             playerController = new PlayerController(player);
             badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 50, 5, 2, 400, 300);
+            //badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 10, 5, 2, SpawnPointEnemy);
             timeManager = new TimeManager();
         }
 

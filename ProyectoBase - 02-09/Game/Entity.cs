@@ -9,6 +9,8 @@ namespace Game
         protected float spd;
         protected float xPos;
         protected float yPos;
+        protected TransformData transform;
+        protected RendererComponent renderer;
         
         //constructor
         protected Entity(string name,string texture, float hp, float str, float spd, float xPos, float yPos)
@@ -21,6 +23,25 @@ namespace Game
             this.xPos = xPos;
             this.yPos = yPos;
         }
+        protected Entity(string _name, float _hp, float _str, float _spd, TransformData _transform)
+        {
+            this.name = _name;
+            this.hp = _hp;
+            this.str = _str;
+            this.spd = _spd;
+            this.transform = _transform;
+        }
+
+        public Entity(string name, string texture, float hp, float str, float spd, TransformData transform)
+        {
+            this.name = name;
+            this.texture = texture;
+            this.hp = hp;
+            this.str = str;
+            this.spd = spd;
+            this.transform = transform;
+        }
+
         //getters and setter
         public string GetName()
         {

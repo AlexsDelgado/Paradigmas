@@ -61,6 +61,7 @@
     <Compile Include="PositionUtilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CollisionsUtilities.cs" />
+    <Compile Include="RendererComponent.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="TimeManager.cs" />
     <Compile Include="TransformData.cs" />

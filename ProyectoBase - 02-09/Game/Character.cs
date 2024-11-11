@@ -13,15 +13,40 @@ namespace Game
             base.yPos = yPos;
         }
 
+        public Character(string name, float hp, float str, float spd, TransformData transform) : base(name, hp, str, spd, transform)
+        {
+            base.name = name;
+            base.hp = hp;
+            base.str = str;
+            base.spd = spd;
+            base.transform = transform;
+
+        }
+        public void CreateCharacter(TransformData _transform,string _texture)
+        {
+            transform.PositionX = _transform.PositionX;
+            transform.PositionX = _transform.PositionY;
+            renderer.Texture = _texture;
+        }
+
         public void Movement(float newXPos, float newYPos)
         {
             xPos = newXPos;
             yPos = newYPos;
+            transform.SetPosition(xPos, yPos);
+
         }
 
         private void PlayerDefeat()
         {
                 GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+        }
+        
+        public void CharacterDraw()
+        {
+            renderer.Transform = transform;
+            renderer.Texture = texture;
+            renderer.Draw();
         }
 
     }

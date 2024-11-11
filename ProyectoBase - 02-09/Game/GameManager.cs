@@ -9,6 +9,7 @@ namespace Game
     public class GameManager
     {
         private static GameManager instance;
+        public Enemy currentEnemy;
         public static GameManager Instance
         {
             get
