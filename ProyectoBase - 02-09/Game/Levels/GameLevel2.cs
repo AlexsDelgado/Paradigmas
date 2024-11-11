@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Game
+{
+    public class GameLevel2 : Level
+    {
+        private PlayerController playerController;
+        private Enemy badGuy;
+        private TimeManager timeManager;
+        private TransformData spawnEnemy;
+        private TransformData spawnPoint;
+
+
+        public GameLevel2(Texture background, LevelType p_levelType) : base(background, p_levelType)
+        {
+
+            spawnPoint = new TransformData();
+            spawnEnemy = new TransformData();
+            spawnPoint.SetPosition(50, 50);
+            spawnEnemy.SetPosition(400, 300);
+   
+            Character player = new Character("Hero", 100, 10, 5, spawnPoint, "GameAssets/movimiento1.png");
+            badGuy = new Enemy("Enemy1", "GameAssets/enemigo1.png",50,20,2,spawnEnemy);
+            
+            //badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 50, 5, 2, 400, 300);
+            playerController = new PlayerController(player);
+            timeManager = new TimeManager();
+        }
+
+        public override void Update()
+        {
+            float deltaTime = timeManager.GetDeltaTime();
+            playerController.Update(deltaTime);
+            Character player = playerController.GetPlayer();
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                new Vector2(badGuy.GetXPos(), badGuy.GetYPos()), new Vector2(50, 50)))
+            {
+                if (Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.FightScene);
+                }
+            }
+        }
+
+        public override void Render()
+        {
+            Engine.Draw(background);
+            Character player = playerController.GetPlayer();
+            Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+            Engine.Draw(badGuy.GetTexture(), badGuy.GetXPos(), badGuy.GetYPos());
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                new Vector2(badGuy.GetXPos(), badGuy.GetYPos()), new Vector2(50, 50)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), badGuy.GetXPos(), badGuy.GetYPos() - 20);
+            }
+        }
+    }
+}

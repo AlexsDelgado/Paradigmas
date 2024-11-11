@@ -1,0 +1,2 @@
+C:\Projects\Paradigmas\ProyectoBase - 02-09\Unit Test\obj\Debug\Unit Test.csproj.AssemblyReference.cache
+C:\Projects\Paradigmas\ProyectoBase - 02-09\Unit Test\obj\Debug\Unit Test.csproj.CoreCompileInputs.cache

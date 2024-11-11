@@ -39,6 +39,26 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Game.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="GameManager.cs" />
+    <Compile Include="Interface\Asset.cs" />
+    <Compile Include="Interface\IRender.cs" />
+    <Compile Include="Items.cs" />
+    <Compile Include="Levels\FightScene.cs" />
+    <Compile Include="Levels\GameLevel1.cs" />
+    <Compile Include="Levels\GameLevel2.cs" />
+    <Compile Include="Levels\Level.cs" />
+    <Compile Include="Levels\LevelManager.cs" />
+    <Compile Include="Levels\LevelType.cs" />
+    <Compile Include="Levels\LoseLevel.cs" />
+    <Compile Include="Levels\MenuLevel.cs" />
+    <Compile Include="Levels\WinLevel.cs" />
+    <Compile Include="npc.cs" />
+    <Compile Include="NPCController.cs" />
+    <Compile Include="PlayerController.cs" />
+    <Compile Include="PositionUtilities.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Program.cs" />
     <Compile Include="CollisionsUtilities.cs" />
     <Compile Include="Time.cs" />
