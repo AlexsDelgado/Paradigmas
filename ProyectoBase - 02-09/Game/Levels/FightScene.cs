@@ -19,11 +19,13 @@ namespace Game
 
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 100, 400);
-            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
+            player = new Character("Hero", "GameAssets/movimiento1.png", 10, 10, 2, 10, 400);
+            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100, 8, 100, 400, 100);
             //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
 
-
+            player.OnDeath += PlayerDefeat;       
+            enemy.OnDeath += EnemyDefeat;          
+            enemy.OnDamageReceived += DamageLog;
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
             fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Flee/FleeButton1.png"), 400, 500);
             buttons = new List<Button> { attackButton, fleeButton };
@@ -81,17 +83,27 @@ namespace Game
 
             if (Engine.GetKey(Keys.SPACE))
             {
+                //if (selectedButtonIndex == 0)
+                //{
+                //    enemy.GetDamage(player.GetStr());
+                //    if (enemy.GetHp() <= 0)
+                //    {
+                //        GameManager.Instance.ChangeLevel(LevelType.WinScene);
+                //    }
+                //    else
+                //    {
+                //        isPlayerTurn = false;
+                //    }
+                //}
+                //else if (selectedButtonIndex == 1)
+                //{
+                //    GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+                //}
                 if (selectedButtonIndex == 0)
                 {
-                    enemy.GetDamage(player.GetStr());
-                    if (enemy.GetHp() <= 0)
-                    {
-                        GameManager.Instance.ChangeLevel(LevelType.WinScene);
-                    }
-                    else
-                    {
-                        isPlayerTurn = false;
-                    }
+                    float damage = player.GetStr();
+                    enemy.GetDamage(damage);
+                    isPlayerTurn = false;
                 }
                 else if (selectedButtonIndex == 1)
                 {
@@ -100,17 +112,38 @@ namespace Game
             }
         }
 
+        //private void HandleEnemyTurn()
+        //{
+        //    player.GetDamage(enemy.GetStr());
+        //    if (player.GetHp() <= 0)
+        //    {
+        //        GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+        //    }
+        //    else
+        //    {
+        //        isPlayerTurn = true;
+        //    }
+        //}
+
         private void HandleEnemyTurn()
         {
             player.GetDamage(enemy.GetStr());
-            if (player.GetHp() <= 0)
-            {
-                GameManager.Instance.ChangeLevel(LevelType.LoseScene);
-            }
-            else
-            {
-                isPlayerTurn = true;
-            }
+            isPlayerTurn = true;
+        }
+
+        private void PlayerDefeat()
+        {
+            GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+        }
+
+        private void EnemyDefeat()
+        {
+            GameManager.Instance.ChangeLevel(LevelType.WinScene);
+        }
+
+        private void DamageLog(float damage)
+        {
+            Engine.Debug($"El enemigo recibió {damage} de daño.");
         }
 
         private void DrawHealthBar(Entity entity, float xPos, float yPos)

@@ -1,3 +1,5 @@
+using System;
+
 namespace Game
 {
     public class Entity
@@ -11,7 +13,11 @@ namespace Game
         protected float yPos;
         protected TransformData transform;
         protected RendererComponent renderer;
-        
+
+        // eventos
+        public event Action<float> OnDamageReceived; 
+        public event Action OnDeath;                
+
         //constructor
         protected Entity(string name,string texture, float hp, float str, float spd, float xPos, float yPos)
         {
@@ -102,14 +108,12 @@ namespace Game
         public void GetDamage(float dmg)
         {
             hp = hp - dmg;
-            Engine.Debug("Recibio "+dmg+" de daño");
-            if (hp<=0)
+            OnDamageReceived?.Invoke(dmg);
+            Engine.Debug($"{name} recibió {dmg} de daño. Vida restante: {hp}");
+
+            if (hp <= 0)
             {
-                Kill();
-            }
-            else
-            {
-                Engine.Debug("A "+name+" le queda "+hp+" de vida restante");    
+                OnDeath?.Invoke();
             }
         }
 

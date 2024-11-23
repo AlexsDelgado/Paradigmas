@@ -45,6 +45,8 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Interface\Asset.cs" />
+    <Compile Include="Interface\IRender.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="Levels\FightScene.cs" />
     <Compile Include="Levels\GameLevel1.cs" />
