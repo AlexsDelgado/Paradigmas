@@ -432,3 +432,6 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.cspro
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.exe
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.pdb
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\Level1.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\chest.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\MenuLevel.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin.png

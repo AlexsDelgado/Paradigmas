@@ -46,6 +46,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Interface\Asset.cs" />
+    <Compile Include="Interface\Coin.cs" />
+    <Compile Include="Interface\IInteractable.cs" />
     <Compile Include="Interface\IRender.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="Levels\FightScene.cs" />
@@ -106,6 +108,12 @@
     <Content Include="GameAssets\Assets\cartel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Assets\chest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\coin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Assets\teclaE.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -140,6 +148,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Pantallas\mapa2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\MenuLevel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Pantallas\YouLose.png">

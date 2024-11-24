@@ -1,28 +1,65 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Game
 {
     class Asset : IRender
     {
-        public string texture { get => texture; set => texture = value; }
-        public TransformData transform { get => transform; set => transform = value; }
-        public float scaleX { get => scaleX; set => scaleX = value; }
-        public float scaleY { get => scaleY; set => scaleY = value; }
+        protected string texture;
+        protected TransformData transform;
+        protected RendererComponent renderer;
+        protected float scaleX;
+        protected float scaleY;
 
 
         public Asset(string _texture, TransformData _transform, float _scalex, float _scaley)
         {
-            texture = _texture;
-            transform = _transform;
+            transform = new TransformData(_transform.PositionX, _transform.PositionY);
+            renderer = new RendererComponent();
             scaleX = _scalex;
             scaleY = _scaley;
+            renderer.ScaleX = _scalex;
+            renderer.ScaleY = _scaley;
+
         }
+        public Asset()
+        {
+           
+
+           transform = new TransformData(0,0);
+           renderer = new RendererComponent();
+            renderer.ScaleX = 1;
+            renderer.ScaleY = 1;
+
+        }
+        public void CreateAsset(TransformData _transform, string _texture)
+        {
+            transform.PositionX = _transform.PositionX;
+            transform.PositionY = _transform.PositionY;
+            texture = _texture;
+       
+        }
+
+        public TransformData GetTransform()
+        {
+            return transform;
+        }
+
 
         public void Draw()
         {
-            Engine.Draw(texture, transform.PositionX, transform.PositionY);
-        }
+            renderer.Transform = transform;
+            renderer.Texture = texture;
+            renderer.Draw();
 
-       public void Draw(string text, float posX, float posY)
+        }
+  
+
+
+        public void Draw(string text, float posX, float posY)
         {
             Engine.Draw(text, posX, posY);
         }
@@ -31,5 +68,12 @@ namespace Game
         {
             Engine.Draw(text, posX, posY, scaleX, scaleY);
         }
+
+        public void Draw(float scaleX, float scaleY)
+        {
+            
+            Engine.Draw(texture, transform.PositionX, transform.PositionY, scaleX, scaleY);
+        }
+
     }
 }

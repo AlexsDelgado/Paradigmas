@@ -45,7 +45,7 @@ namespace Game
             switch (levelType)
             {
                 case LevelType.Menu:
-                    currentLevel = new MenuLevel(Engine.GetTexture("Textures/Background.png"), LevelType.Menu);
+                    currentLevel = new MenuLevel(Engine.GetTexture("GameAssets/Pantallas/MenuLevel.png"), LevelType.Menu);
                     break;
                 case LevelType.Level1:
                     currentLevel = new GameLevel1(Engine.GetTexture("GameAssets/Pantallas/Level1.png"), LevelType.Level1);

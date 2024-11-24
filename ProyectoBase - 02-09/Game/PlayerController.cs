@@ -94,13 +94,13 @@ public class PlayerController
     }
     private void Movement()
     {
-        //if (start)
-        //{
-
-        //}
-        float xpos = GameManager.Instance.currentPlayer.GetXPos();
-        float ypos = GameManager.Instance.currentPlayer.GetYPos();
-        GameManager.Instance.currentPlayer.Movement(xpos + horizontal, ypos + vertical);
+        if (GameManager.Instance.currentPlayer!=null)
+        {
+            float xpos = GameManager.Instance.currentPlayer.GetXPos();
+            float ypos = GameManager.Instance.currentPlayer.GetYPos();
+            GameManager.Instance.currentPlayer.Movement(xpos + horizontal, ypos + vertical);
+        }
+       
     }
 
     public Character GetPlayer()
