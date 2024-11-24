@@ -3,7 +3,7 @@ using System;
 
 namespace Game
 {
-    class ItemShop : Asset, IInteractable
+    public class ItemShop : Asset, IInteractable
     {
         public int _cost { get; set; }
         private int _itemId;

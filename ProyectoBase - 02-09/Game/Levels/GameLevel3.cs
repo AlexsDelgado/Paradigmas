@@ -19,6 +19,7 @@ namespace Game
         private ItemShop item3;
 
         private Enemy boss;
+        private List<ItemShop> items;
 
 
         public GameLevel3(Texture background, LevelType p_levelType) : base(background, p_levelType)
@@ -31,16 +32,18 @@ namespace Game
             playerController = new PlayerController(player);
             timeManager = new TimeManager();
 
+            ItemFactory itemFactory = new ItemFactory();
+            items = itemFactory.CreateItems();
 
-            shop = new TransformData(400, 100);
-            item1 = new ItemShop(0,0);
-            item1.CreateAsset(shop, "GameAssets/Assets/item1.png");
-            shop.SetPosition(450,100);
-            item2 = new ItemShop(1,1);
-            item2.CreateAsset(shop, "GameAssets/Assets/item2.png");
-            shop.SetPosition(500, 100);
-            item3 = new ItemShop(0,2);
-            item3.CreateAsset(shop, "GameAssets/Assets/item3.png");
+            //shop = new TransformData(400, 100);
+            //item1 = new ItemShop(0,0);
+            //item1.CreateAsset(shop, "GameAssets/Assets/item1.png");
+            //shop.SetPosition(450,100);
+            //item2 = new ItemShop(1,1);
+            //item2.CreateAsset(shop, "GameAssets/Assets/item2.png");
+            //shop.SetPosition(500, 100);
+            //item3 = new ItemShop(0,2);
+            //item3.CreateAsset(shop, "GameAssets/Assets/item3.png");
 
             bossSpawn = new TransformData(50, 250);
             boss = new Enemy("Boss", "GameAssets/Personajes/boss.png",100,10,1,bossSpawn);
@@ -56,9 +59,14 @@ namespace Game
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
 
-            CollisionCheck(player, item1);
-            CollisionCheck(player, item2);
-            CollisionCheck(player, item3);
+            foreach (var item in items)
+            {
+                CollisionCheck(player, item);
+            }
+
+            //CollisionCheck(player, item1);
+            //CollisionCheck(player, item2);
+            //CollisionCheck(player, item3);
             CollisionCheck(player, boss);
 
         }
@@ -93,9 +101,14 @@ namespace Game
         public override void Render()
         {
             Engine.Draw(background);
-            item1.Draw();
-            item2.Draw();
-            item3.Draw();
+            //item1.Draw();
+            //item2.Draw();
+            //item3.Draw();
+
+            foreach (var item in items)
+            {
+                item.Draw();
+            }
             boss.EnemyDraw();
             Character player = playerController.GetPlayer();
             player.CharacterDraw();

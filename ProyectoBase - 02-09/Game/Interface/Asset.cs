@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Asset : IRender
+    public class Asset : IRender
     {
         protected string texture;
         protected TransformData transform;

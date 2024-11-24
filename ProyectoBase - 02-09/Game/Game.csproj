@@ -48,8 +48,10 @@
     <Compile Include="Interface\Asset.cs" />
     <Compile Include="Interface\Coin.cs" />
     <Compile Include="Interface\IInteractable.cs" />
+    <Compile Include="Interface\IItemFactory.cs" />
     <Compile Include="Interface\IRender.cs" />
     <Compile Include="Interface\ItemShop.cs" />
+    <Compile Include="ItemFactory.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="Levels\BossFight.cs" />
     <Compile Include="Levels\FightScene.cs" />
