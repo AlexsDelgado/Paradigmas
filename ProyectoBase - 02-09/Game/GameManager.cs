@@ -10,6 +10,8 @@ namespace Game
     {
         private static GameManager instance;
         public Enemy currentEnemy;
+        public float playerArmor;
+
         public static GameManager Instance
         {
             get

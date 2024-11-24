@@ -15,7 +15,7 @@ namespace Game
         protected RendererComponent renderer;
 
         // eventos
-        public event Action<float> OnDamageReceived; 
+        public event Action<float,string> OnDamageReceived; 
         public event Action OnDeath;                
 
         //constructor
@@ -108,8 +108,22 @@ namespace Game
         public void GetDamage(float dmg)
         {
             hp = hp - dmg;
-            OnDamageReceived?.Invoke(dmg);
+            OnDamageReceived?.Invoke(dmg,name);
             Engine.Debug($"{name} recibió {dmg} de daño. Vida restante: {hp}");
+
+            if (hp <= 0)
+            {
+                OnDeath?.Invoke();
+            }
+        }
+        public void GetDamage(float dmg, float def) 
+        {
+            float dmgFinal=0;
+            dmgFinal = dmg-def;
+            if (dmgFinal < 0) dmgFinal = 0;
+            hp = hp - dmgFinal;
+            OnDamageReceived?.Invoke(dmg,name);
+            Engine.Debug($"{name} recibió {dmgFinal} de daño. Vida restante: {hp}");
 
             if (hp <= 0)
             {
@@ -118,7 +132,7 @@ namespace Game
         }
 
         //matar entidad
-      
+
         private void Kill()
         {
             Engine.Debug(name + " no puede continuar el combate");

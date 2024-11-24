@@ -16,21 +16,24 @@ namespace Game
         private List<Button> buttons;
         private bool isPlayerTurn;
         private Animation enemyIdleAnimation;
+        private bool firstTurn;
 
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            player = new Character("Hero", "GameAssets/movimiento1.png", 10, 10, 2, 10, 400);
-            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100, 8, 100, 400, 100);
+            player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
+            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100,10, 100, 400, 100);
             //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
 
-            player.OnDeath += PlayerDefeat;       
-            enemy.OnDeath += EnemyDefeat;          
+            player.OnDeath += PlayerDefeat;
+            enemy.OnDeath += EnemyDefeat;
             enemy.OnDamageReceived += DamageLog;
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
             fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Flee/FleeButton1.png"), 400, 500);
             buttons = new List<Button> { attackButton, fleeButton };
             selectedButtonIndex = 0;
             isPlayerTurn = true;
+            firstTurn = true;
+            
 
             List<Texture> enemyIdleFrames = new List<Texture>
         {
@@ -46,11 +49,32 @@ namespace Game
             enemyIdleAnimation = new Animation("EnemyIdle", enemyIdleFrames, 1f, true);
         }
 
+        
+        
+
         public override void Update()
         {
+            if (firstTurn)
+            {
+                float enemySpd =0;
+                float playerSpd=0;
+                playerSpd = player.GetSpd();
+                enemySpd = enemy.GetSpd();
+                Console.WriteLine(playerSpd);
+                Console.WriteLine(enemySpd);
+                if (playerSpd < enemySpd)
+                {
+                    isPlayerTurn = false;
+                    Console.WriteLine("empezo enemigo");
+                }
+                firstTurn = false;
+
+            }
+            
             if (isPlayerTurn)
             {
                 HandlePlayerTurn();
+                //Console.WriteLine(GameManager.Instance.playerArmor);
             }
             else
             {
@@ -80,25 +104,13 @@ namespace Game
         {
             if (Engine.GetKey(Keys.RIGHT)) selectedButtonIndex = Math.Min(selectedButtonIndex + 1, buttons.Count - 1);
             if (Engine.GetKey(Keys.LEFT)) selectedButtonIndex = Math.Max(selectedButtonIndex - 1, 0);
+            if (Engine.GetKey(Keys.DOWN))
+            {
+                GameManager.Instance.playerArmor += 1;
+            }
 
             if (Engine.GetKey(Keys.SPACE))
             {
-                //if (selectedButtonIndex == 0)
-                //{
-                //    enemy.GetDamage(player.GetStr());
-                //    if (enemy.GetHp() <= 0)
-                //    {
-                //        GameManager.Instance.ChangeLevel(LevelType.WinScene);
-                //    }
-                //    else
-                //    {
-                //        isPlayerTurn = false;
-                //    }
-                //}
-                //else if (selectedButtonIndex == 1)
-                //{
-                //    GameManager.Instance.ChangeLevel(LevelType.LoseScene);
-                //}
                 if (selectedButtonIndex == 0)
                 {
                     float damage = player.GetStr();
@@ -112,22 +124,10 @@ namespace Game
             }
         }
 
-        //private void HandleEnemyTurn()
-        //{
-        //    player.GetDamage(enemy.GetStr());
-        //    if (player.GetHp() <= 0)
-        //    {
-        //        GameManager.Instance.ChangeLevel(LevelType.LoseScene);
-        //    }
-        //    else
-        //    {
-        //        isPlayerTurn = true;
-        //    }
-        //}
-
         private void HandleEnemyTurn()
         {
-            player.GetDamage(enemy.GetStr());
+            player.GetDamage(enemy.GetStr(),GameManager.Instance.playerArmor);
+            Console.WriteLine(GameManager.Instance.playerArmor);
             isPlayerTurn = true;
         }
 
@@ -141,9 +141,10 @@ namespace Game
             GameManager.Instance.ChangeLevel(LevelType.WinScene);
         }
 
-        private void DamageLog(float damage)
+        private void DamageLog(float damage, string name)
         {
-            Engine.Debug($"El enemigo recibió {damage} de daño.");
+            
+            Engine.Debug($"{name} recibió {damage} de daño.");
         }
 
         private void DrawHealthBar(Entity entity, float xPos, float yPos)
