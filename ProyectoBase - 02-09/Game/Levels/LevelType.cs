@@ -13,6 +13,7 @@ namespace Game
         Level2,
         Level3,
         FightScene,
+        BossFight,
         WinScene,
         LoseScene
     }

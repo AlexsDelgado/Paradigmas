@@ -9,9 +9,8 @@ namespace Game
 {
     class Coin : Asset, IInteractable
     {
+        public int _cost {get;set;}
 
-        
-       
 
         public Coin(string _texture, TransformData _transform, float _scalex, float _scaley) : base(_texture, _transform, _scalex, _scaley)
         {
@@ -23,11 +22,11 @@ namespace Game
             
         }
 
-        public int _cost { get => _cost; set => _cost=value; }
+        
 
         public void Interact()
         {
-            GameManager.Instance.coins++;
+            GameManager.Instance.coins+=_cost;
             transform.PositionX = 1000;
             transform.PositionX = 1000;
             Console.WriteLine(GameManager.Instance.coins);

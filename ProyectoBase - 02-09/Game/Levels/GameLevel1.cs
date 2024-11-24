@@ -33,6 +33,7 @@ namespace Game
            // moneda.CreateAsset(coinSpawn, "GameAssets/Assets/chest.png");
             coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
             coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
+            coins.SetCost(10);
 
             //spawnPoint.SetPosition(50, 50);
             //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);

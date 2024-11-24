@@ -49,7 +49,9 @@
     <Compile Include="Interface\Coin.cs" />
     <Compile Include="Interface\IInteractable.cs" />
     <Compile Include="Interface\IRender.cs" />
+    <Compile Include="Interface\ItemShop.cs" />
     <Compile Include="Items.cs" />
+    <Compile Include="Levels\BossFight.cs" />
     <Compile Include="Levels\FightScene.cs" />
     <Compile Include="Levels\GameLevel1.cs" />
     <Compile Include="Levels\GameLevel2.cs" />
@@ -114,6 +116,21 @@
     <Content Include="GameAssets\Assets\coin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Assets\item1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\item2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\item3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\item4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\items.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Assets\teclaE.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -138,7 +155,22 @@
     <Content Include="GameAssets\movimiento4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Pantallas\battleMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\BossBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\cave.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Pantallas\Forest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\gameover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\IconSet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Pantallas\Level1.png">
@@ -153,6 +185,9 @@
     <Content Include="GameAssets\Pantallas\MenuLevel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Pantallas\Slash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Pantallas\YouLose.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -160,6 +195,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Personajes\Bad1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Personajes\boss.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\ship.png">
