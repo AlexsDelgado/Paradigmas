@@ -133,6 +133,9 @@
     <Content Include="GameAssets\Assets\items.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Assets\SHOP MENU.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Assets\teclaE.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

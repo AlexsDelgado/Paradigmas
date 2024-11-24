@@ -55,10 +55,10 @@ namespace Game
             renderer.Draw();
         }
 
-        public TransformData getTransform()
-        {
-            return transform;
-        }
+        //public TransformData getTransform()
+        //{
+        //    return transform;
+        //}
 
     }
 }

@@ -15,6 +15,8 @@ namespace Game
         public float playerBuff;
         public int coins;
 
+
+
         public static GameManager Instance
         {
             get
@@ -71,6 +73,26 @@ namespace Game
 
             }
         }
+       
+        
+        public bool CheckCoins(int cost)
+        {
+            
+            if (cost > coins)
+            {
+                Console.WriteLine("no tienes monedas suficientes");
+                return false;
+            }
+            else
+            {
+                //coins -= cost;
+                return true;
+            }
+
+            
+        }
+        
+        
         public void Update()
         {
             currentLevel.Update();

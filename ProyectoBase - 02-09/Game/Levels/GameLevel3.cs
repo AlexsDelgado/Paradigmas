@@ -20,34 +20,38 @@ namespace Game
 
         private Enemy boss;
         private List<ItemShop> items;
+        ItemFactory itemFactory;
+        private int shopInstance;
 
+
+        private npc john;
+        private bool colisionVendor;
+        private bool anyBuy;
 
         public GameLevel3(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-        
+
             SpawnPoint = new TransformData(0, 0);
             SpawnPoint.SetPosition(200, 10);
             Character player = GameManager.Instance.currentPlayer;
+            //Entity vendor = new Entity();
+
             player.Movement(SpawnPoint.PositionX, SpawnPoint.PositionY);
             playerController = new PlayerController(player);
             timeManager = new TimeManager();
 
-            ItemFactory itemFactory = new ItemFactory();
+            anyBuy = false;
+            itemFactory = new ItemFactory();
             items = itemFactory.CreateItems();
 
-            //shop = new TransformData(400, 100);
-            //item1 = new ItemShop(0,0);
-            //item1.CreateAsset(shop, "GameAssets/Assets/item1.png");
-            //shop.SetPosition(450,100);
-            //item2 = new ItemShop(1,1);
-            //item2.CreateAsset(shop, "GameAssets/Assets/item2.png");
-            //shop.SetPosition(500, 100);
-            //item3 = new ItemShop(0,2);
-            //item3.CreateAsset(shop, "GameAssets/Assets/item3.png");
+            shop = new TransformData(200,50);
+            john = new npc("Merchant",shop);
+            john.CreateCharacter("GameAssets/movimiento1.png");
 
             bossSpawn = new TransformData(50, 250);
             boss = new Enemy("Boss", "GameAssets/Personajes/boss.png",100,10,1,bossSpawn);
             boss.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
+
 
 
         }
@@ -59,18 +63,74 @@ namespace Game
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
 
-            foreach (var item in items)
+            if (items!=null)
             {
-                CollisionCheck(player, item);
+                foreach (var item in items)
+                {
+                    if (item !=null)
+                    {
+
+                    }
+                    CollisionCheck(player, item);
+                }
             }
+           
 
             //CollisionCheck(player, item1);
             //CollisionCheck(player, item2);
             //CollisionCheck(player, item3);
             CollisionCheck(player, boss);
+            CollisionCheck(player, john,itemFactory);
+
 
         }
 
+        private void CollisionCheck(Character player, npc vendor, ItemFactory factory)
+        {
+            if (CollisionsUtilities.IsBoxColliding(
+                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(40, 40),
+                 new Vector2(vendor.GetTransform().PositionX, vendor.GetTransform().PositionY), new Vector2(50, 50)))
+            {
+              
+                //Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), john.GetXPos(), john.GetYPos() - 20); ;
+                colisionVendor = true;
+                //if (Engine.GetKey(Keys.Num1))
+                //{
+                //    GameManager.Instance.CheckCoins(2);
+                //    itemFactory.CreateItem(0);
+                //    anyBuy = true;
+                //    shopInstance = 0;
+                //}
+                //if (Engine.GetKey(Keys.Num2))
+                //{
+                //    GameManager.Instance.CheckCoins(2);
+                //    itemFactory.CreateItem(1);
+                //    anyBuy = true;
+                //    shopInstance = 1;
+                //}
+                //if (Engine.GetKey(Keys.Num3))
+                //{
+                //    GameManager.Instance.CheckCoins(2);
+                //    itemFactory.CreateItem(2);
+                //    anyBuy = true;
+                //    shopInstance = 2;
+                //}
+                if (Engine.GetKey(Keys.E))
+                {
+                    //compras todo
+                    GameManager.Instance.CheckCoins(5);
+                    //itemFactory.CreateItems();
+                    anyBuy = true;
+                    shopInstance = 3;
+                }
+
+            }
+            else
+            {
+                colisionVendor = false;
+            }
+
+        }
         private void CollisionCheck(Character player, ItemShop interactable)
         {
             if (CollisionsUtilities.IsBoxColliding(
@@ -101,14 +161,47 @@ namespace Game
         public override void Render()
         {
             Engine.Draw(background);
-            //item1.Draw();
-            //item2.Draw();
-            //item3.Draw();
-
-            foreach (var item in items)
+            john.CharacterDraw();
+            if (colisionVendor)
             {
-                item.Draw();
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/SHOP MENU.png"), john.GetXPos(), john.GetYPos() + 20);
             }
+
+            if(anyBuy)
+            {
+                foreach (var item in items)
+                {
+                    if (item != null) item.Draw();
+                }
+                //switch (shopInstance)
+                //{
+                //    case 0:
+                //        item1 = items.Find(item => item.GetId() == shopInstance);
+                //        if (item1 != default) item1.Draw();
+
+                //        break;
+
+                //    case 1:
+                //        items.Find(item => item.GetId() == shopInstance).Draw();
+                //        break;
+
+                //    case 2:
+                //        items.Find(item => item.GetId() == shopInstance).Draw();
+                //        break;
+                //    case 3:
+                //        foreach (var item in items)
+                //        {
+                //            if (item != null) item.Draw();
+                //        }
+                //        break;
+                //    default:
+
+                //        break;
+
+                //}
+
+            } 
+            
             boss.EnemyDraw();
             Character player = playerController.GetPlayer();
             player.CharacterDraw();

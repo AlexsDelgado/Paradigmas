@@ -13,6 +13,10 @@ namespace Game
             _cost = cost;
             _itemId = id;
         }
+        public int GetId()
+        {
+            return _itemId;
+        }
         public void Interact()
         {
             

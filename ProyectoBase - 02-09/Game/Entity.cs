@@ -49,6 +49,10 @@ namespace Game
             this.xPos = transform.PositionX;
             this.yPos = transform.PositionY;
         }
+        public Entity()
+        {
+
+        }
 
         //getters and setter
         public string GetName()
@@ -138,6 +142,10 @@ namespace Game
         private void Kill()
         {
             Engine.Debug(name + " no puede continuar el combate");
+        }
+        public TransformData GetTransform()
+        {
+            return transform;
         }
     }
 

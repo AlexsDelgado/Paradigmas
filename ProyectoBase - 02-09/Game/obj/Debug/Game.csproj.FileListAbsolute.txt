@@ -463,3 +463,4 @@ C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\MenuLevel.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\Slash.png
 C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\boss.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\SHOP MENU.png
