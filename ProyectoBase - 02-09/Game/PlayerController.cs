@@ -1,4 +1,5 @@
 ﻿using Game;
+using System;
 
 public class PlayerController
 {
@@ -10,6 +11,9 @@ public class PlayerController
     private float mapHeight;
     private float playerWidth = 20;
     private float playerHeight = 20;
+    private float vertical = 0;
+    private float horizontal = 0;
+    private bool start =true;
 
     public PlayerController(Character player)
     {
@@ -26,32 +30,48 @@ public class PlayerController
         bool isMoving = false;
         if (Engine.GetKey(Keys.S))
         {
-            player.SetYPos(player.GetYPos() + movementSpeed * deltaTime);
+            //player.SetYPos(player.GetYPos() + movementSpeed * deltaTime);
+            //player.SetYPos(player.GetYPos() + movementSpeed * deltaTime);
+            vertical = movementSpeed * deltaTime;
+    
             textureDirection = "GameAssets/movimiento1.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.W))
         {
-            player.SetYPos(player.GetYPos() - movementSpeed * deltaTime);
+            //player.SetYPos(player.GetYPos() - movementSpeed * deltaTime);
+            vertical = -movementSpeed * deltaTime;
+
             textureDirection = "GameAssets/movimiento2.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.A))
         {
-            player.SetXPos(player.GetXPos() - movementSpeed * deltaTime);
+            //player.SetXPos(player.GetXPos() - movementSpeed * deltaTime);
+
+            horizontal = -movementSpeed * deltaTime;
             textureDirection = "GameAssets/movimiento4.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.D))
         {
-            player.SetXPos(player.GetXPos() + movementSpeed * deltaTime);
+            //player.SetXPos(player.GetXPos() + movementSpeed * deltaTime);
+            horizontal = movementSpeed * deltaTime;
             textureDirection = "GameAssets/movimiento3.png";
             isMoving = true;
         }
+
+       
         ClampPlayerPosition();
         if (isMoving)
         {
             cambioTextura = true;
+            Movement();
+
+            //Console.WriteLine(player.getTransform().PositionY);
+
+
+
         }
 
         if (cambioTextura)
@@ -59,6 +79,8 @@ public class PlayerController
             player.SetTexture(textureDirection);
             cambioTextura = false;
         }
+        vertical = 0;
+        horizontal = 0;
     }
 
     private void ClampPlayerPosition()
@@ -69,6 +91,16 @@ public class PlayerController
         yPos = PositionUtilities.Clamp(yPos, 0, mapHeight - playerHeight);
         player.SetXPos(xPos);
         player.SetYPos(yPos);
+    }
+    private void Movement()
+    {
+        //if (start)
+        //{
+
+        //}
+        float xpos = GameManager.Instance.currentPlayer.GetXPos();
+        float ypos = GameManager.Instance.currentPlayer.GetYPos();
+        GameManager.Instance.currentPlayer.Movement(xpos + horizontal, ypos + vertical);
     }
 
     public Character GetPlayer()

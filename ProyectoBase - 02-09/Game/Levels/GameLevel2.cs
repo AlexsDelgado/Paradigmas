@@ -11,21 +11,28 @@ namespace Game
         private PlayerController playerController;
         private Enemy badGuy;
         private TimeManager timeManager;
-        private TransformData SpawnPointEnemy;
+        private TransformData SpawnPoint;
 
 
         public GameLevel2(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            //SpawnPointEnemy.SetPosition(400, 300);
-            Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            SpawnPoint = new TransformData(0,0);
+            SpawnPoint.SetPosition(50, 50);
+            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            //Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
+            //player.CreateCharacter(SpawnPoint, "GameAssets/movimiento1.png");
+            Character player = GameManager.Instance.currentPlayer;
+            player.Movement(SpawnPoint.PositionX, SpawnPoint.PositionY);
             playerController = new PlayerController(player);
             badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 50, 5, 2, 400, 300);
             //badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 10, 5, 2, SpawnPointEnemy);
             timeManager = new TimeManager();
+
         }
 
         public override void Update()
         {
+          
             float deltaTime = timeManager.GetDeltaTime();
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
@@ -38,13 +45,23 @@ namespace Game
                     GameManager.Instance.ChangeLevel(LevelType.FightScene);
                 }
             }
+
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                 new Vector2(400, 600), new Vector2(50, 50))
+                )
+            {
+                GameManager.Instance.ChangeLevel(LevelType.Level3);
+
+            }
         }
 
         public override void Render()
         {
             Engine.Draw(background);
             Character player = playerController.GetPlayer();
-            Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+            player.CharacterDraw();
+            //Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
             Engine.Draw(badGuy.GetTexture(), badGuy.GetXPos(), badGuy.GetYPos());
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),

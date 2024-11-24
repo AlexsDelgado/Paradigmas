@@ -38,14 +38,16 @@ namespace Game
             this.transform = _transform;
         }
 
-        public Entity(string name, string texture, float hp, float str, float spd, TransformData transform)
+        public Entity(string name, string texture, float hp, float str, float spd, TransformData _transform)
         {
             this.name = name;
             this.texture = texture;
             this.hp = hp;
             this.str = str;
             this.spd = spd;
-            this.transform = transform;
+            this.transform =  new TransformData(_transform.PositionX, _transform.PositionY);
+            this.xPos = transform.PositionX;
+            this.yPos = transform.PositionY;
         }
 
         //getters and setter

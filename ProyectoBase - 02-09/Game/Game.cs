@@ -188,7 +188,7 @@ namespace Game
         [DllImport("Engine.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool GetRunning();
 
-        public static void Initialize(string title = "Game", int windowWidth = 800, int windowHeight = 600, bool fullscreen = false)
+        public static void Initialize(string title = "Game", int windowWidth = 768, int windowHeight = 576, bool fullscreen = false)
         {
             int res = InitInternal(title, windowWidth, windowHeight, fullscreen);
             WindowOpened = true;
@@ -230,7 +230,7 @@ namespace Game
 
         public static void Draw(Texture texture, float x = 0, float y = 0, float scaX = 1, float scaY = 1, float angle = 0, float offsetX = 0, float offsetY = 0)
         {
-            Draw(texture.Id, x, y, texture.Width * scaX, texture.Height * scaY, angle, offsetX, offsetY);
+           Draw(texture.Id, x, y, texture.Width * scaX, texture.Height * scaY, angle, offsetX, offsetY);
         }
 
         public static bool GetKey(Keys key)

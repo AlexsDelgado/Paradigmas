@@ -431,3 +431,4 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.cspro
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.exe
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\obj\Debug\Game.pdb
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\Level1.png

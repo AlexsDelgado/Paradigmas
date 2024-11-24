@@ -10,7 +10,10 @@ namespace Game
     {
         private static GameManager instance;
         public Enemy currentEnemy;
+        public Character currentPlayer;
         public float playerArmor;
+        public float playerBuff;
+        public int coins;
 
         public static GameManager Instance
         {
@@ -45,10 +48,13 @@ namespace Game
                     currentLevel = new MenuLevel(Engine.GetTexture("Textures/Background.png"), LevelType.Menu);
                     break;
                 case LevelType.Level1:
-                    currentLevel = new GameLevel1(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Level1);
+                    currentLevel = new GameLevel1(Engine.GetTexture("GameAssets/Pantallas/Level1.png"), LevelType.Level1);
                     break;
                 case LevelType.Level2:
                     currentLevel = new GameLevel2(Engine.GetTexture("GameAssets/Pantallas/mapa2.png"), LevelType.Level2);
+                    break;
+                case LevelType.Level3:
+                    currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Level3);
                     break;
                 case LevelType.FightScene:
                     currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);
@@ -59,6 +65,7 @@ namespace Game
                 case LevelType.LoseScene:
                     currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/YouLose.png"), LevelType.LoseScene);
                     break;
+              
             }
         }
         public void Update()

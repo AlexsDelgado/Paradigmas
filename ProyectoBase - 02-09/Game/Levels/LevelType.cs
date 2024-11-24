@@ -11,6 +11,7 @@ namespace Game
         Menu,
         Level1,
         Level2,
+        Level3,
         FightScene,
         WinScene,
         LoseScene

@@ -19,14 +19,20 @@ namespace Game
             base.hp = hp;
             base.str = str;
             base.spd = spd;
-            base.transform = transform;
+            base.transform = new TransformData(transform.PositionX,transform.PositionY);
+            base.renderer = new RendererComponent();
 
         }
         public void CreateCharacter(TransformData _transform,string _texture)
         {
             transform.PositionX = _transform.PositionX;
             transform.PositionX = _transform.PositionY;
+            xPos = transform.PositionX;
+            yPos = transform.PositionY;
             renderer.Texture = _texture;
+            renderer.ScaleX = 1;
+            renderer.ScaleY = 1;
+            texture = renderer.Texture;
         }
 
         public void Movement(float newXPos, float newYPos)
@@ -47,6 +53,11 @@ namespace Game
             renderer.Transform = transform;
             renderer.Texture = texture;
             renderer.Draw();
+        }
+
+        public TransformData getTransform()
+        {
+            return transform;
         }
 
     }

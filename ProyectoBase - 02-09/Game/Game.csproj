@@ -51,6 +51,7 @@
     <Compile Include="Levels\FightScene.cs" />
     <Compile Include="Levels\GameLevel1.cs" />
     <Compile Include="Levels\GameLevel2.cs" />
+    <Compile Include="Levels\GameLevel3.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Levels\LevelManager.cs" />
     <Compile Include="Levels\LevelType.cs" />
@@ -130,6 +131,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Pantallas\Forest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Pantallas\Level1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Pantallas\mapa1.png">

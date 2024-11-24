@@ -12,13 +12,23 @@ namespace Game
         private npc john;
         private Items cartel;
         private TimeManager timeManager;
-        private TransformData spawnPoint;
+        private TransformData SpawnPoint;
         
 
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
+
+
+            SpawnPoint = new TransformData(0, 0);
+            SpawnPoint.SetPosition(50, 50);
+            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
+            player.CreateCharacter(SpawnPoint,"GameAssets/movimiento1.png");
+
+
             //spawnPoint.SetPosition(50, 50);
-            Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+            GameManager.Instance.currentPlayer = player;
             //Character player = new Character("Hero", 100, 10, 5, spawnPoint);
             //player.CreateCharacter(spawnPoint, "GameAssets/Movimiento1.png");
             playerController = new PlayerController(player);
@@ -58,7 +68,8 @@ namespace Game
         {
             Engine.Draw(background);
             Character player = playerController.GetPlayer();
-            Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+            player.CharacterDraw();
+            //Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
             Engine.Draw(john.GetTexture(), john.GetXPos(), john.GetYPos());
             Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
 

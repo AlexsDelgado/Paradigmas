@@ -13,6 +13,12 @@
         public float Scale { get => scale; set => scale = value; }
         public float Rotation { get => rotation; set => rotation = value; }
 
+        public TransformData(float x, float y)
+        {
+            positionX = x;
+            positionY = y;
+
+        }
         public void SetPosition(float x, float y)
         {
             positionX = x;
