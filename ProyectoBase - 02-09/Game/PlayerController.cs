@@ -13,7 +13,6 @@ public class PlayerController
     private float playerHeight = 20;
     private float vertical = 0;
     private float horizontal = 0;
-    private bool start =true;
 
     public PlayerController(Character player)
     {
@@ -21,12 +20,40 @@ public class PlayerController
         this.movementSpeed = 100;
         this.textureDirection = player.GetTexture();
         this.cambioTextura = false;
-        this.mapWidth = 800;
-        this.mapHeight = 600;
+        this.mapWidth = 768;
+        this.mapHeight = 574;
     }
+    public void CheckMap()
+    {
 
+        switch(GameManager.Instance.currentLevel.LevelType){
+            case LevelType.Level1:
+                
+                break;
+            case LevelType.Level2:
+               
+                break;
+            case LevelType.Level3:
+                
+            case LevelType.FightScene:
+                
+                break;
+            case LevelType.WinScene:
+                
+                break;
+            case LevelType.LoseScene:
+                
+                break;
+            case LevelType.BossFight:
+               
+                break;
+        }
+    }
     public void Update(float deltaTime)
     {
+
+        CheckMap();
+
         bool isMoving = false;
         if (Engine.GetKey(Keys.S))
         {
