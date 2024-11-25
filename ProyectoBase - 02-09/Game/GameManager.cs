@@ -14,6 +14,8 @@ namespace Game
         public float playerArmor;
         public float playerBuff;
         public int coins;
+        public ObjectPool<Coin> coinPool;
+    
 
 
 
@@ -24,6 +26,7 @@ namespace Game
                 if (instance == null)
                 {
                     instance = new GameManager();
+                    
                 }
                 return instance;
             }

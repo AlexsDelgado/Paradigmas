@@ -11,35 +11,47 @@ namespace Game
         private PlayerController playerController;
         private npc john;
         private Items cartel;
-        private Asset moneda;
         private Coin coins;
         private TimeManager timeManager;
         private TransformData SpawnPoint;
         private TransformData coinSpawn;
-
+        private float coinCD= 3;
+        private float coinTimer;
+       
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
 
+            GameManager.Instance.coinPool = new ObjectPool<Coin>(2);
+            for (int i = 0; i < 2; i++)
+            {
+                Coin coin = GameManager.Instance.coinPool.GetObject();
+                coin.Initialize($"GameAssets/Assets/coin{i + 1}.png", new TransformData(100 * (i + 1), 430), 1.0f, 1.0f);
+                coin.SetCost(i + 1);
+                GameManager.Instance.coinPool.ReturnObject(coin);
+                Console.WriteLine(coin.GetTexture());
+                Console.Write(coin.GetTransform().PositionX);
+                Console.WriteLine(coin.GetTransform().PositionY);
+                
+            }
 
             SpawnPoint = new TransformData(0, 0);
             SpawnPoint.SetPosition(50, 50);
             coinSpawn = new TransformData(10, 300);
-            //coinSpawn.SetPosition(150, 300);
-            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+
             Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
             player.CreateCharacter(SpawnPoint,"GameAssets/movimiento1.png");
 
-          //  moneda = new Asset("GameAssets/Assets/chest.png",coinSpawn,1,1);
-           // moneda.CreateAsset(coinSpawn, "GameAssets/Assets/chest.png");
-            coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
-            coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
-            coins.SetCost(10);
 
-            //spawnPoint.SetPosition(50, 50);
-            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
+
+            //coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
+            //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
+            coins = GameManager.Instance.coinPool.GetObject();
+            //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
+            //  coins.SetCost(10);
+
+
             GameManager.Instance.currentPlayer = player;
-            //Character player = new Character("Hero", 100, 10, 5, spawnPoint);
-            //player.CreateCharacter(spawnPoint, "GameAssets/Movimiento1.png");
+
             playerController = new PlayerController(player);
             john = new npc("John", "GameAssets/movimiento1.png", 50, 1, 1, 400, 200);
             cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
@@ -48,9 +60,15 @@ namespace Game
 
         public override void Update()
         {
+            
+        //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionX);
+        //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionY);
             float deltaTime = timeManager.GetDeltaTime();
+            coinTimer += deltaTime;
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
+
+
 
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
@@ -75,10 +93,13 @@ namespace Game
                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                new Vector2(coins.GetTransform().PositionX, coins.GetTransform().PositionY), new Vector2(50, 50)))
             {
-                if (Engine.GetKey(Keys.E))
+                //GameManager.Instance.coinPool.GetObject().Interact();
+                if(coinTimer>coinCD )
                 {
                     coins.Interact();
+                    coinTimer = 0;
                 }
+                
             }
 
 
@@ -87,11 +108,12 @@ namespace Game
         public override void Render()
         {
             Engine.Draw(background);
-            //moneda.Draw();
-            coins.Draw(0.5f,0.5f);
+            coins.Draw();
+
+            //GameManager.Instance.coinPool.GetObject().Draw(0.5f, 0.5f);
             Character player = playerController.GetPlayer();
             player.CharacterDraw();
-            //Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
+
             Engine.Draw(john.GetTexture(), john.GetXPos(), john.GetYPos());
             Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
       

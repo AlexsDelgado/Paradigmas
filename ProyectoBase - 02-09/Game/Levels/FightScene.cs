@@ -21,7 +21,7 @@ namespace Game
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
             player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
-            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 100,10, 100, 400, 100);
+            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 30,5, 100, 400, 100);
             //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
 
             player.OnDeath += PlayerDefeat;
@@ -119,7 +119,7 @@ namespace Game
                 }
                 else if (selectedButtonIndex == 1)
                 {
-                    GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+                    GameManager.Instance.ChangeLevel(LevelType.Level2);
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace Game
 
         private void EnemyDefeat()
         {
-            GameManager.Instance.ChangeLevel(LevelType.WinScene);
+            GameManager.Instance.ChangeLevel(LevelType.Level2);
         }
 
         private void DamageLog(float damage, string name)

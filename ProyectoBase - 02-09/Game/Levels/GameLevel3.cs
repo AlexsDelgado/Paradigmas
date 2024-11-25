@@ -21,7 +21,6 @@ namespace Game
         private Enemy boss;
         private List<ItemShop> items;
         ItemFactory itemFactory;
-        private int shopInstance;
 
 
         private npc john;
@@ -121,7 +120,7 @@ namespace Game
                     GameManager.Instance.CheckCoins(5);
                     //itemFactory.CreateItems();
                     anyBuy = true;
-                    shopInstance = 3;
+                    //shopInstance = 3;
                 }
 
             }

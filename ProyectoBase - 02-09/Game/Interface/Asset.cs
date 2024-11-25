@@ -14,7 +14,10 @@ namespace Game
         protected float scaleX;
         protected float scaleY;
 
-
+        public string GetTexture()
+        {
+            return texture;
+        }
         public Asset(string _texture, TransformData _transform, float _scalex, float _scaley)
         {
             transform = new TransformData(_transform.PositionX, _transform.PositionY);
@@ -72,6 +75,10 @@ namespace Game
         public void Draw(float scaleX, float scaleY)
         {
             
+            Engine.Draw(texture, transform.PositionX, transform.PositionY, scaleX, scaleY);
+        }
+        public void Draw(string texture)
+        {
             Engine.Draw(texture, transform.PositionX, transform.PositionY, scaleX, scaleY);
         }
 

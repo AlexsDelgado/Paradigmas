@@ -66,6 +66,7 @@
     <Compile Include="Levels\WinLevel.cs" />
     <Compile Include="npc.cs" />
     <Compile Include="NPCController.cs" />
+    <Compile Include="ObjectPool.cs" />
     <Compile Include="PlayerController.cs" />
     <Compile Include="PositionUtilities.cs" />
     <Compile Include="Program.cs" />
@@ -116,6 +117,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Assets\coin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\coin1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\coin2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\coin3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Assets\coin4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameAssets\Assets\item1.png">
