@@ -6,6 +6,7 @@ namespace Game
     {
         protected string name;
         protected string texture;
+        protected string combatTexture;
         protected float hp;
         protected float str;
         protected float spd;
@@ -146,6 +147,14 @@ namespace Game
         public TransformData GetTransform()
         {
             return transform;
+        }
+
+        public void DrawCombat()
+        {
+            renderer.Transform = transform;
+            renderer.Texture = combatTexture;
+            renderer.Draw();
+
         }
     }
 

@@ -8,20 +8,20 @@ namespace UnitTestProject1
     public class UnitTest1
     {
 
-        //[TestMethod]
-        //public void TestRenderComp()
-        //{
-        //    TransformData SpawnTest = new TransformData();
-        //    SpawnTest.SetPosition(500, 500);
-        //    string path = "GameAssets/movimiento1.png";
-        //    // Entity test = new Entity("pepe", 10, 10, 10, SpawnTest, "GameAssets/movimiento1.png");
-        //    Entity test1;
-        //    test1 = new Entity(SpawnTest, "GameAssets/movimiento1.png");
-        //    string texturaOK = test1.texture;
-        //    Assert.AreEqual(path, texturaOK);
-        //    Console.Write("\n");
-        //    Console.Write(test1.texture);
-        //}
+        [TestMethod]
+        public void TestRenderComp()
+        {
+            TransformData SpawnTest = new TransformData(0,0);
+            SpawnTest.SetPosition(500, 500);
+            string path = "GameAssets/movimiento1.png";
+            Entity test = new Entity("prueba", "GameAssets/movimiento1.png",10, 10, 10, SpawnTest);
+            //Entity test1;
+           // test1 = new Entity(SpawnTest, "GameAssets/movimiento1.png");
+            string texturaOK = test.GetTexture();
+            Assert.AreEqual(path, texturaOK);
+            Console.Write("\n");
+            Console.Write(test.GetTexture());
+        }
 
 
 
@@ -29,7 +29,7 @@ namespace UnitTestProject1
         //PRUEBA DE POSICION, METODO SETPOSITION
         public void TestTransform()
         {
-            TransformData transform = new TransformData();
+            TransformData transform = new TransformData(0,0);
             float x, y;
             x = 5;
             y = 10;

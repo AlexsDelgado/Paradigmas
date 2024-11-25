@@ -13,7 +13,7 @@ namespace Game
             base.xPos = xPos;
             base.yPos = yPos;
         }
-        public Enemy(string _name, string _texture, float _hp, float _str, float _spd, TransformData _transform) : base(_name,
+        public Enemy(string _name, string _texture, string _combatTexture , float _hp, float _str, float _spd, TransformData _transform) : base(_name,
              _texture, _hp, _str, _spd, _transform)
         {
             base.name = name;
@@ -22,6 +22,7 @@ namespace Game
             base.spd = spd;
             base.transform = new TransformData(_transform.PositionX, _transform.PositionY);
             base.renderer = new RendererComponent();
+            combatTexture = _combatTexture;
 
 
         }
@@ -29,7 +30,7 @@ namespace Game
         public void CreateEnemy(TransformData _transform, string _texture)
         {
             transform.PositionX = _transform.PositionX;
-            transform.PositionX = _transform.PositionY;
+            transform.PositionY = _transform.PositionY;
             xPos = transform.PositionX;
             yPos = transform.PositionY;
             renderer.Texture = _texture;
@@ -44,10 +45,19 @@ namespace Game
             renderer.Draw();
         }
 
+        public void EnemyDrawCombat()
+        {
+            renderer.Transform = transform;
+            renderer.Texture = combatTexture;
+            renderer.Draw();
+
+        }
+
+
 
         //  base.transform = new TransformData(transform.PositionX,transform.PositionY);
         //base.renderer = new RendererComponent();
-        public void Movement(int x, int y)
+        public void Movement(float x, float y)
         {
             xPos += x;
             yPos += y;

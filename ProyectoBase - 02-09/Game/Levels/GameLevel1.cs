@@ -15,8 +15,10 @@ namespace Game
         private TimeManager timeManager;
         private TransformData SpawnPoint;
         private TransformData coinSpawn;
-        private float coinCD= 3;
+        private bool npcMsg = false;
+        private float coinCD= 1.5f;
         private float coinTimer;
+        private float msgTimer;
        
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
@@ -25,7 +27,7 @@ namespace Game
             for (int i = 0; i < 3; i++)
             {
                 Coin coin = GameManager.Instance.coinPool.GetObject();
-                coin.Initialize($"GameAssets/Assets/coin{i + 1}.png", new TransformData(100 * (i + 1), 430), 1.0f, 1.0f);
+                coin.Initialize($"GameAssets/Sprites/coin{i + 1}.png", new TransformData(130 * (i + 1), 150), 1.0f, 1.0f);
                 coin.SetCost(i* 2+1);
                 GameManager.Instance.coinPool.ReturnObject(coin);
                 Console.WriteLine(coin.GetTexture());
@@ -34,34 +36,38 @@ namespace Game
                 Console.WriteLine(coin._cost);
             }
 
-            SpawnPoint = new TransformData(0, 0);
-            SpawnPoint.SetPosition(50, 50);
+            SpawnPoint = new TransformData(543 ,88); 
+            //SpawnPoint.SetPosition(543, 88);
             coinSpawn = new TransformData(10, 300);
 
             Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
-            player.CreateCharacter(SpawnPoint,"GameAssets/movimiento1.png");
-
+            GameManager.Instance.currentPlayer = player;
+            //player.CreateCharacter(SpawnPoint, "GameAssets/Personajes/down.png");
+            GameManager.Instance.currentPlayer.CreateCharacter(SpawnPoint, "GameAssets/Personajes/down.png", "GameAssets/Personajes/playerCombat.png");
             //coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
             //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
             coins = GameManager.Instance.coinPool.GetObject();
             //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
             //  coins.SetCost(10);
 
-            GameManager.Instance.currentPlayer = player;
+            //GameManager.Instance.currentPlayer = player;
 
-            playerController = new PlayerController(player);
-            john = new npc("John", "GameAssets/movimiento1.png", 50, 1, 1, 400, 200);
+
+            playerController = new PlayerController(GameManager.Instance.currentPlayer);
+            john = new npc("John", "GameAssets/Personajes/vendor.png", 50, 1, 1, 400, 200);
             cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 400);
             timeManager = new TimeManager();
         }
 
         public override void Update()
         {
-            
+  
         //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionX);
         //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionY);
             float deltaTime = timeManager.GetDeltaTime();
             coinTimer += deltaTime;
+           
+
             playerController.Update(deltaTime);
             Character player = playerController.GetPlayer();
 
@@ -74,6 +80,7 @@ namespace Game
                 if (Engine.GetKey(Keys.E))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.Level2);
+                
                 }
             }
 
@@ -84,26 +91,34 @@ namespace Game
                 if (Engine.GetKey(Keys.E))
                 {
                     Engine.Debug("Ir al cartel");
+                    npcMsg = true;
+
                 }
             }
             if (CollisionsUtilities.IsBoxColliding(
                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                new Vector2(coins.GetTransform().PositionX, coins.GetTransform().PositionY), new Vector2(50, 50)))
             {
-                //GameManager.Instance.coinPool.GetObject().Interact();
                 if(coinTimer>coinCD )
                 {
                     coins.Interact();
                     coinTimer = 0;
                     Coin nextCoin = GameManager.Instance.coinPool.GetObject();
                     coins = nextCoin;
-                    //Random random = new Random();
-                    //int randomX = random.Next(0, 750);
-                    //int randomY = random.Next(0, 535);
-                    //nextCoin.transform.PositionX = randomX;
-                    //nextCoin.transform.PositionY = randomY;
+
                 }
                 
+            }
+           
+            if (npcMsg)
+            {
+                msgTimer += deltaTime;
+                Console.WriteLine(msgTimer);
+                if (msgTimer > 3)
+                {
+                    npcMsg = false;
+                    msgTimer = 0;
+                }
             }
 
 
@@ -116,18 +131,23 @@ namespace Game
 
             //GameManager.Instance.coinPool.GetObject().Draw(0.5f, 0.5f);
             Character player = playerController.GetPlayer();
-            player.CharacterDraw();
-
+           
             Engine.Draw(john.GetTexture(), john.GetXPos(), john.GetYPos());
             Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
-      
+            player.CharacterDraw();
+
+
+            if (npcMsg)
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/Mensaje1.png"), john.GetXPos() - 400, john.GetYPos() + 120);
+            }
 
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                 new Vector2(john.GetXPos(), john.GetYPos()), new Vector2(50, 50)))
             {
                 Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), john.GetXPos(), john.GetYPos() - 20);
-                Engine.Draw(Engine.GetTexture("GameAssets/Assets/Mensaje1.png"), john.GetXPos() - 400, john.GetYPos() + 120);
+                   
             }
 
             if (CollisionsUtilities.IsBoxColliding(

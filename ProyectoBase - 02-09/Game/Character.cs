@@ -2,6 +2,7 @@ namespace Game
 {
     public class Character : Entity
     {
+        
         public Character(string name, string texture, float hp, float str, float spd, float xPos, float yPos) : base(name, texture, hp, str, spd, xPos, yPos)
         {
             base.name = name;
@@ -23,16 +24,17 @@ namespace Game
             base.renderer = new RendererComponent();
 
         }
-        public void CreateCharacter(TransformData _transform,string _texture)
+        public void CreateCharacter(TransformData _transform, string _texture, string _combatTexture)
         {
             transform.PositionX = _transform.PositionX;
-            transform.PositionX = _transform.PositionY;
+            transform.PositionY = _transform.PositionY;
             xPos = transform.PositionX;
             yPos = transform.PositionY;
             renderer.Texture = _texture;
             renderer.ScaleX = 1;
             renderer.ScaleY = 1;
             texture = renderer.Texture;
+            combatTexture = _combatTexture;
         }
 
         public void Movement(float newXPos, float newYPos)
@@ -54,6 +56,8 @@ namespace Game
             renderer.Texture = texture;
             renderer.Draw();
         }
+
+
 
         //public TransformData getTransform()
         //{

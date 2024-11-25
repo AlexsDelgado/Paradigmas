@@ -52,7 +52,7 @@ public class PlayerController
     public void Update(float deltaTime)
     {
 
-        CheckMap();
+        //CheckMap();
 
         bool isMoving = false;
         if (Engine.GetKey(Keys.S))
@@ -61,7 +61,7 @@ public class PlayerController
             //player.SetYPos(player.GetYPos() + movementSpeed * deltaTime);
             vertical = movementSpeed * deltaTime;
     
-            textureDirection = "GameAssets/movimiento1.png";
+            textureDirection = "GameAssets/Personajes/down.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.W))
@@ -69,7 +69,7 @@ public class PlayerController
             //player.SetYPos(player.GetYPos() - movementSpeed * deltaTime);
             vertical = -movementSpeed * deltaTime;
 
-            textureDirection = "GameAssets/movimiento2.png";
+            textureDirection = "GameAssets/Personajes/up.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.A))
@@ -77,14 +77,14 @@ public class PlayerController
             //player.SetXPos(player.GetXPos() - movementSpeed * deltaTime);
 
             horizontal = -movementSpeed * deltaTime;
-            textureDirection = "GameAssets/movimiento4.png";
+            textureDirection = "GameAssets/Personajes/left.png";
             isMoving = true;
         }
         if (Engine.GetKey(Keys.D))
         {
             //player.SetXPos(player.GetXPos() + movementSpeed * deltaTime);
             horizontal = movementSpeed * deltaTime;
-            textureDirection = "GameAssets/movimiento3.png";
+            textureDirection = "GameAssets/Personajes/right.png";
             isMoving = true;
         }
 

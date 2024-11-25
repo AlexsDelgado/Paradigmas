@@ -18,11 +18,42 @@ namespace Game
         private Animation enemyIdleAnimation;
         private bool firstTurn;
 
+
+        private int currentTurn;
+        private int lastTurn = 0;
+
+        TransformData playerPosition;
+        TransformData enemyPosition;
+        TransformData iconPosition;
+        TransformData iconPositionEnemy;
+        TransformData hpBarPlayer;
+        TransformData hpBarEnemy;
+
+
         public BossFight(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
-            enemy = new Enemy("Boss", "GameAssets/Personajes/boss.png", 100, 10, 100, 400, 100);
+            //player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
+           
             //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
+
+
+
+            player = GameManager.Instance.currentPlayer;
+           
+
+            playerPosition = new TransformData(100, 200);
+            enemyPosition = new TransformData(300, 200);
+            iconPosition = new TransformData(10, 70);
+            iconPositionEnemy = new TransformData(588, 70);
+            hpBarPlayer = new TransformData(10, 10);
+            hpBarEnemy = new TransformData(430, 10);
+            //enemy = new Enemy("Boss", "GameAssets/Personajes/boss.png", 100, 10, 100, 400, 100);
+            //enemy.CreateEnemy(enemyPosition, "GameAssets/Personajes/boss.png");
+            enemy = GameManager.Instance.currentEnemy;
+
+
+            player.Movement(playerPosition.PositionX, playerPosition.PositionY);
+            enemy.GetTransform().SetPosition(enemyPosition.PositionX, enemyPosition.PositionY);
 
             player.OnDeath += PlayerDefeat;
             enemy.OnDeath += EnemyDefeat;
@@ -58,67 +89,125 @@ namespace Game
 
             }
 
-            if (isPlayerTurn)
+            switch (currentTurn)
             {
-                HandlePlayerTurn();
-                //Console.WriteLine(GameManager.Instance.playerArmor);
-            }
-            else
-            {
-                HandleEnemyTurn();
+
+                case 0:
+                    HandlePlayerTurn();
+                    break;
+                case 1:
+
+                    HandleEnemyTurn();
+                    break;
+                case 2:
+                    if (Engine.GetKey(Keys.E))
+                    {
+
+                        HandleTurns();
+
+                    }
+                    break;
             }
 
 
-         
+
         }
 
+        //public override void Render()
+        //{
+        //    Engine.Draw(background);
+        //    //Engine.Draw(enemyIdleAnimation.CurrentFrame, enemy.GetXPos(), enemy.GetYPos());
+        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/BossBackground.png"));
+        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/cave.png"));
+        //    Engine.Draw(enemy.GetTexture(),50,50,0.5f,0.5f);
+        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/battleMenu.png"));
+        //    foreach (var button in buttons)
+        //    {
+        //        button.Render();
+        //    }
+
+        //    Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
+        //    DrawHealthBar(player, 10, 10);
+        //    DrawHealthBar(enemy, enemy.GetXPos() - 50, enemy.GetYPos() - 30);
+        //}
         public override void Render()
         {
             Engine.Draw(background);
-            //Engine.Draw(enemyIdleAnimation.CurrentFrame, enemy.GetXPos(), enemy.GetYPos());
-            Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/BossBackground.png"));
-            Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/cave.png"));
-            Engine.Draw(enemy.GetTexture(),50,50,0.5f,0.5f);
-            Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/battleMenu.png"));
-            foreach (var button in buttons)
+            player.DrawCombat();
+            enemy.EnemyDrawCombat();
+
+            if (currentTurn == 0)
             {
-                button.Render();
+                foreach (var button in buttons)
+                {
+                    button.Render();
+                }
+                Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
+                Engine.Draw(Engine.GetTexture("GameAssets/Personajes/playerIcon.png"), iconPosition.PositionX, iconPosition.PositionY);
+            }
+            else
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Personajes/bossIcon.png"), 588, iconPositionEnemy.PositionY);
+
             }
 
-            Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
-            DrawHealthBar(player, 10, 10);
-            DrawHealthBar(enemy, enemy.GetXPos() - 50, enemy.GetYPos() - 30);
+            DrawHealthBar(player, hpBarPlayer.PositionX, hpBarPlayer.PositionY);
+            DrawHealthBar(enemy, hpBarEnemy.PositionX, hpBarEnemy.PositionY);
         }
+        private void HandleTurns()
+        {
+            if (Engine.GetKey(Keys.E))
+            {
+                if (lastTurn == 0)
+                {
+                    currentTurn = 1;
 
+                }
+                else
+                {
+                    currentTurn = 0;
+                }
+            }
+        }
         private void HandlePlayerTurn()
         {
             if (Engine.GetKey(Keys.RIGHT)) selectedButtonIndex = Math.Min(selectedButtonIndex + 1, buttons.Count - 1);
             if (Engine.GetKey(Keys.LEFT)) selectedButtonIndex = Math.Max(selectedButtonIndex - 1, 0);
-            if (Engine.GetKey(Keys.DOWN))
-            {
-                GameManager.Instance.playerArmor += 1;
-            }
-
             if (Engine.GetKey(Keys.SPACE))
             {
                 if (selectedButtonIndex == 0)
                 {
                     float damage = player.GetStr();
                     enemy.GetDamage(damage);
+                    currentTurn = 2;
+                    lastTurn = 0;
                     isPlayerTurn = false;
+
                 }
                 else if (selectedButtonIndex == 1)
                 {
-                    GameManager.Instance.ChangeLevel(LevelType.LoseScene);
+                    GameManager.Instance.ChangeLevel(LevelType.Level2);
                 }
             }
-        }
+            else
+            {
+                isPlayerTurn = false;
+            }
 
+        }
         private void HandleEnemyTurn()
         {
-            player.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
-            Console.WriteLine(GameManager.Instance.playerArmor);
-            isPlayerTurn = true;
+            GameManager.Instance.currentPlayer.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
+            Console.WriteLine($"armor class { GameManager.Instance.playerArmor}");
+            Console.WriteLine($"dmg { enemy.GetStr()}");
+            currentTurn = 2;
+            lastTurn = 1;
+
+            //player.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
+            //Console.WriteLine(GameManager.Instance.playerArmor);
+            //isPlayerTurn = true;
+
+
         }
 
         private void PlayerDefeat()

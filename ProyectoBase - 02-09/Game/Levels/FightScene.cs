@@ -17,16 +17,44 @@ namespace Game
         private bool isPlayerTurn;
         private Animation enemyIdleAnimation;
         private bool firstTurn;
+        private int currentTurn;
+        private int lastTurn=0;
+
+        TransformData playerPosition;
+        TransformData enemyPosition;
+        TransformData iconPosition;
+        TransformData iconPositionEnemy;
+        TransformData hpBarPlayer;
+        TransformData hpBarEnemy;
+
+
+
 
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
-            enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 30,5, 100, 400, 100);
+            //player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
+            //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 30,5, 100, 400, 100);
             //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
+            player = GameManager.Instance.currentPlayer;
+            enemy = GameManager.Instance.currentEnemy;
+            playerPosition = new TransformData(100,200);
+            enemyPosition = new TransformData(500, 200);
+            iconPosition = new TransformData(10, 70);
+            iconPositionEnemy = new TransformData(588,70);
+            hpBarPlayer = new TransformData(10, 10) ;
+            hpBarEnemy = new TransformData(430, 10);
+
+            player.Movement(playerPosition.PositionX, playerPosition.PositionY);
+            enemy.GetTransform().SetPosition(enemyPosition.PositionX, enemyPosition.PositionY);
+           
+
+
 
             player.OnDeath += PlayerDefeat;
             enemy.OnDeath += EnemyDefeat;
             enemy.OnDamageReceived += DamageLog;
+            player.OnDamageReceived += DamageLog;
+
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
             fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Flee/FleeButton1.png"), 400, 500);
             buttons = new List<Button> { attackButton, fleeButton };
@@ -49,104 +77,157 @@ namespace Game
             enemyIdleAnimation = new Animation("EnemyIdle", enemyIdleFrames, 1f, true);
         }
 
-        
-        
+
+
 
         public override void Update()
         {
             if (firstTurn)
             {
-                float enemySpd =0;
-                float playerSpd=0;
+                float enemySpd = 0;
+                float playerSpd = 0;
                 playerSpd = player.GetSpd();
                 enemySpd = enemy.GetSpd();
                 Console.WriteLine(playerSpd);
                 Console.WriteLine(enemySpd);
                 if (playerSpd < enemySpd)
                 {
-                    isPlayerTurn = false;
+                    currentTurn = 1;
                     Console.WriteLine("empezo enemigo");
+                }
+                else
+                {
+                    currentTurn = 0;
                 }
                 firstTurn = false;
 
             }
-            
-            if (isPlayerTurn)
-            {
-                HandlePlayerTurn();
-                //Console.WriteLine(GameManager.Instance.playerArmor);
-            }
-            else
-            {
-                HandleEnemyTurn();
-            }
 
+            Console.WriteLine(currentTurn);
+            Console.WriteLine(lastTurn);
+            switch (currentTurn)
+            {
+                
+                case 0:
+                    HandlePlayerTurn();
+                    break;
+                case 1:
+                    
+                    HandleEnemyTurn();
+                    break;
+                case 2:
+                    if (Engine.GetKey(Keys.E))
+                    {
 
-            enemyIdleAnimation.Update();
+                        HandleTurns();
+        
+                    }                    
+                    break;
+            }
+          
+
+            //enemyIdleAnimation.Update();
         }
 
         public override void Render()
         {
             Engine.Draw(background);
-            Engine.Draw(enemyIdleAnimation.CurrentFrame, enemy.GetXPos(), enemy.GetYPos());
+            player.DrawCombat();
+            enemy.EnemyDrawCombat();
 
-            foreach (var button in buttons)
+            if (currentTurn==0)
             {
-                button.Render();
+                foreach (var button in buttons)
+                {
+                    button.Render();
+                }
+                Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
+                Engine.Draw(Engine.GetTexture("GameAssets/Personajes/playerIcon.png"), iconPosition.PositionX, iconPosition.PositionY);
+            }
+            else
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Personajes/batIcon.png"), 588, iconPositionEnemy.PositionY);
+
             }
 
-            Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
-            DrawHealthBar(player, 10, 10);
-            DrawHealthBar(enemy, enemy.GetXPos() - 50, enemy.GetYPos() - 30);
+            DrawHealthBar(player, hpBarPlayer.PositionX, hpBarPlayer.PositionY);
+            DrawHealthBar(enemy, hpBarEnemy.PositionX, hpBarEnemy.PositionY);
         }
 
+        private void HandleTurns()
+        {
+            if (Engine.GetKey(Keys.E))
+            {
+                if (lastTurn == 0)
+                {
+                    currentTurn = 1;
+                   //HandleEnemyTurn();
+                   
+                }
+                else
+                {
+            
+                    currentTurn = 0;
+                    //HandlePlayerTurn();
+                }
+            }
+        }
         private void HandlePlayerTurn()
         {
             if (Engine.GetKey(Keys.RIGHT)) selectedButtonIndex = Math.Min(selectedButtonIndex + 1, buttons.Count - 1);
             if (Engine.GetKey(Keys.LEFT)) selectedButtonIndex = Math.Max(selectedButtonIndex - 1, 0);
-            if (Engine.GetKey(Keys.DOWN))
+                if (Engine.GetKey(Keys.SPACE))
+                {
+                    if (selectedButtonIndex == 0)
+                    {
+                        float damage = player.GetStr();
+                        enemy.GetDamage(damage);
+                        currentTurn = 2;
+                        lastTurn=0;
+                        isPlayerTurn = false;
+                       
+                    }
+                    else if (selectedButtonIndex == 1)
+                    {
+                        GameManager.Instance.ChangeLevel(LevelType.Level2);
+                    }
+            }
+            else
             {
-                GameManager.Instance.playerArmor += 1;
+                isPlayerTurn = false;
             }
 
-            if (Engine.GetKey(Keys.SPACE))
-            {
-                if (selectedButtonIndex == 0)
-                {
-                    float damage = player.GetStr();
-                    enemy.GetDamage(damage);
-                    isPlayerTurn = false;
-                }
-                else if (selectedButtonIndex == 1)
-                {
-                    GameManager.Instance.ChangeLevel(LevelType.Level2);
-                }
-            }
         }
-
         private void HandleEnemyTurn()
         {
-            player.GetDamage(enemy.GetStr(),GameManager.Instance.playerArmor);
-            Console.WriteLine(GameManager.Instance.playerArmor);
-            isPlayerTurn = true;
+                GameManager.Instance.currentPlayer.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
+                Console.WriteLine($"armor class { GameManager.Instance.playerArmor}");
+                Console.WriteLine($"dmg { enemy.GetStr()}");
+                currentTurn = 2;
+                lastTurn = 1;
+
+            //player.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
+            //Console.WriteLine(GameManager.Instance.playerArmor);
+            //isPlayerTurn = true;
+
+
         }
 
         private void PlayerDefeat()
         {
             GameManager.Instance.ChangeLevel(LevelType.LoseScene);
         }
-
         private void EnemyDefeat()
         {
+            GameManager.Instance.enemyDefeated = true;
+            GameManager.Instance.coins++;
             GameManager.Instance.ChangeLevel(LevelType.Level2);
         }
-
         private void DamageLog(float damage, string name)
         {
             
             Engine.Debug($"{name} recibió {damage} de daño.");
         }
-
         private void DrawHealthBar(Entity entity, float xPos, float yPos)
         {
             float maxHealth = 100;

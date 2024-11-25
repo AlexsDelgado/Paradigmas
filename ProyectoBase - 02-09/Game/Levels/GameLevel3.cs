@@ -47,13 +47,15 @@ namespace Game
 
             shop = new TransformData(200,50);
             john = new npc("Merchant",shop);
-            john.CreateCharacter("GameAssets/movimiento1.png");
+            john.CreateCharacter("GameAssets/Personajes/vendor.png");
 
             bossSpawn = new TransformData(250, 250);
-            boss = new Enemy("Boss", "GameAssets/Personajes/boss.png",100,10,1,bossSpawn);
-            boss.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
+            boss = new Enemy("Boss", "GameAssets/Personajes/boss.png", "GameAssets/Personajes/bossCombat.png", 100,10,1,bossSpawn);
+            //boss.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
+            GameManager.Instance.currentEnemy = boss;
+            GameManager.Instance.currentEnemy.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
 
-            alfombra = new Items("alfombra", "GameAssets/Assets/Alfombra.png", 10, 1, 1, 395, 70);
+          alfombra = new Items("alfombra", "GameAssets/Assets/Alfombra.png", 10, 1, 1, 395, 70);
             cartel = new Items("cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 20, 70);
         }
 
@@ -148,7 +150,7 @@ namespace Game
         {
             if (CollisionsUtilities.IsBoxColliding(
             new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-            new Vector2(boss.GetTransform().PositionX + 200, boss.GetTransform().PositionY), new Vector2(150, 150)))
+            new Vector2(boss.GetTransform().PositionX, boss.GetTransform().PositionY), new Vector2(150, 150)))
             {
                 if (Engine.GetKey(Keys.E))
                 {
@@ -231,9 +233,9 @@ namespace Game
 
             if (CollisionsUtilities.IsBoxColliding(
             new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-             new Vector2(boss.GetTransform().PositionX + 200, boss.GetTransform().PositionY), new Vector2(150, 250)))
+             new Vector2(boss.GetTransform().PositionX, boss.GetTransform().PositionY), new Vector2(150, 250)))
             {
-                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), boss.GetTransform().PositionX + 150, boss.GetTransform().PositionY - 20);
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), boss.GetTransform().PositionX, boss.GetTransform().PositionY - 20);
             }
         }
     }

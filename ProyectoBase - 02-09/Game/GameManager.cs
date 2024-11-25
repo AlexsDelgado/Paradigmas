@@ -9,12 +9,13 @@ namespace Game
     public class GameManager
     {
         private static GameManager instance;
-        public Enemy currentEnemy;
+        public Enemy currentEnemy ;
         public Character currentPlayer;
-        public float playerArmor;
+        public float playerArmor=0;
         public float playerBuff;
         public int coins;
         public ObjectPool<Coin> coinPool;
+        public bool enemyDefeated=false;
     
 
 
@@ -68,7 +69,7 @@ namespace Game
                     currentLevel = new WinLevel(Engine.GetTexture("GameAssets/Pantallas/YouWin.png"), LevelType.WinScene);
                     break;
                 case LevelType.LoseScene:
-                    currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/YouLose.png"), LevelType.LoseScene);
+                    currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/background1.png"), LevelType.LoseScene);
                     break;
                 case LevelType.BossFight:
                     currentLevel = new BossFight(Engine.GetTexture("GameAssets/Pantallas/BossBackground.png"), LevelType.BossFight);
