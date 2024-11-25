@@ -12,6 +12,7 @@ namespace Game
         private Enemy badGuy;
         private TimeManager timeManager;
         private TransformData SpawnPoint;
+        private Items cartel;
 
 
         public GameLevel2(Texture background, LevelType p_levelType) : base(background, p_levelType)
@@ -27,6 +28,8 @@ namespace Game
             badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 50, 5, 2, 400, 300);
             //badGuy = new Enemy("Mavado", "GameAssets/enemigo1.png", 10, 5, 2, SpawnPointEnemy);
             timeManager = new TimeManager();
+            cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
+
 
         }
 
@@ -48,10 +51,12 @@ namespace Game
 
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-                 new Vector2(400, 600), new Vector2(50, 50))
-                )
+                 new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
             {
-                GameManager.Instance.ChangeLevel(LevelType.Level3);
+                if (Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Level3);
+                }
 
             }
         }
@@ -61,13 +66,25 @@ namespace Game
             Engine.Draw(background);
             Character player = playerController.GetPlayer();
             player.CharacterDraw();
+            Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
+
             //Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
             Engine.Draw(badGuy.GetTexture(), badGuy.GetXPos(), badGuy.GetYPos());
+
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), cartel.GetXPos(), cartel.GetYPos() - 20);
+            }
+
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                 new Vector2(badGuy.GetXPos(), badGuy.GetYPos()), new Vector2(50, 50)))
             {
                 Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), badGuy.GetXPos(), badGuy.GetYPos() - 20);
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/Mensaje2.png"), badGuy.GetXPos() - 400, badGuy.GetYPos() + 100);
+
             }
         }
     }

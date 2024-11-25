@@ -468,3 +468,12 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin2.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin3.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin4.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin1.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin2.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin3.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\coin4.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\Mensaje1.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\SHOP MENU.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\Mensaje2.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\Mensaje3.png
+C:\Users\Usuario\Documents\GitHub\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Assets\Alfombra.png

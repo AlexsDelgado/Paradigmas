@@ -32,7 +32,6 @@ namespace Game
                 Console.Write(coin.GetTransform().PositionX);
                 Console.WriteLine(coin.GetTransform().PositionY);
                 Console.WriteLine(coin._cost);
-                
             }
 
             SpawnPoint = new TransformData(0, 0);
@@ -42,20 +41,17 @@ namespace Game
             Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
             player.CreateCharacter(SpawnPoint,"GameAssets/movimiento1.png");
 
-
-
             //coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
             //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
             coins = GameManager.Instance.coinPool.GetObject();
             //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
             //  coins.SetCost(10);
 
-
             GameManager.Instance.currentPlayer = player;
 
             playerController = new PlayerController(player);
             john = new npc("John", "GameAssets/movimiento1.png", 50, 1, 1, 400, 200);
-            cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
+            cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 400);
             timeManager = new TimeManager();
         }
 
@@ -131,6 +127,7 @@ namespace Game
                 new Vector2(john.GetXPos(), john.GetYPos()), new Vector2(50, 50)))
             {
                 Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), john.GetXPos(), john.GetYPos() - 20);
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/Mensaje1.png"), john.GetXPos() - 400, john.GetYPos() + 120);
             }
 
             if (CollisionsUtilities.IsBoxColliding(

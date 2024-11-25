@@ -26,6 +26,8 @@ namespace Game
         private npc john;
         private bool colisionVendor;
         private bool anyBuy;
+        private Items alfombra;
+        private Items cartel;
 
         public GameLevel3(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
@@ -47,12 +49,12 @@ namespace Game
             john = new npc("Merchant",shop);
             john.CreateCharacter("GameAssets/movimiento1.png");
 
-            bossSpawn = new TransformData(50, 250);
+            bossSpawn = new TransformData(250, 250);
             boss = new Enemy("Boss", "GameAssets/Personajes/boss.png",100,10,1,bossSpawn);
             boss.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
 
-
-
+            alfombra = new Items("alfombra", "GameAssets/Assets/Alfombra.png", 10, 1, 1, 395, 70);
+            cartel = new Items("cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 20, 70);
         }
 
         public override void Update()
@@ -80,7 +82,7 @@ namespace Game
             //CollisionCheck(player, item3);
             CollisionCheck(player, boss);
             CollisionCheck(player, john,itemFactory);
-
+            CollisionCheck(player, cartel);
 
         }
 
@@ -146,11 +148,24 @@ namespace Game
         {
             if (CollisionsUtilities.IsBoxColliding(
             new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-            new Vector2(boss.GetXPos(), boss.GetYPos()), new Vector2(150, 150)))
+            new Vector2(boss.GetTransform().PositionX + 200, boss.GetTransform().PositionY), new Vector2(150, 150)))
             {
                 if (Engine.GetKey(Keys.E))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.BossFight);
+                }
+            }
+        }
+
+        private void CollisionCheck(Character player, Items item)
+        {
+            if (CollisionsUtilities.IsBoxColliding(
+            new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+            new Vector2(item.GetXPos(), item.GetYPos()), new Vector2(50, 50)))
+            {
+                if (Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Level2);
                 }
             }
         }
@@ -160,6 +175,7 @@ namespace Game
         public override void Render()
         {
             Engine.Draw(background);
+            Engine.Draw(alfombra.GetTexture(), alfombra.GetXPos(), alfombra.GetYPos());
             john.CharacterDraw();
             if (colisionVendor)
             {
@@ -204,6 +220,21 @@ namespace Game
             boss.EnemyDraw();
             Character player = playerController.GetPlayer();
             player.CharacterDraw();
+
+            Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
+            if (CollisionsUtilities.IsBoxColliding(
+            new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+            new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), cartel.GetXPos(), cartel.GetYPos() - 20);
+            }
+
+            if (CollisionsUtilities.IsBoxColliding(
+            new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+             new Vector2(boss.GetTransform().PositionX + 200, boss.GetTransform().PositionY), new Vector2(150, 250)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), boss.GetTransform().PositionX + 150, boss.GetTransform().PositionY - 20);
+            }
         }
     }
 }
