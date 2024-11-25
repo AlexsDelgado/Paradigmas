@@ -215,9 +215,13 @@
     <Content Include="GameAssets\Pantallas\mapa2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Pantallas\mapa3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Pantallas\MenuLevel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Pantallas\MenuLevel2.png" />
     <Content Include="GameAssets\Pantallas\Slash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

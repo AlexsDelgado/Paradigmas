@@ -42,7 +42,7 @@ namespace Game
            
 
             playerPosition = new TransformData(100, 200);
-            enemyPosition = new TransformData(300, 200);
+            enemyPosition = new TransformData(300, 180);
             iconPosition = new TransformData(10, 70);
             iconPositionEnemy = new TransformData(588, 70);
             hpBarPlayer = new TransformData(10, 10);
@@ -58,6 +58,8 @@ namespace Game
             player.OnDeath += PlayerDefeat;
             enemy.OnDeath += EnemyDefeat;
             enemy.OnDamageReceived += DamageLog;
+            player.OnDamageReceived += DamageLog;
+
             attackButton = new Button("Pelear", Engine.GetTexture("Textures/Buttons/Attack/AttackButton.png"), 0, 500);
             fleeButton = new Button("Escapar", Engine.GetTexture("Textures/Buttons/Flee/FleeButton1.png"), 400, 500);
             buttons = new List<Button> { attackButton, fleeButton };

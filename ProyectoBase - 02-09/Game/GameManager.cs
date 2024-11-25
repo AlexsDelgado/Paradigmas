@@ -60,7 +60,7 @@ namespace Game
                     currentLevel = new GameLevel2(Engine.GetTexture("GameAssets/Pantallas/mapa2.png"), LevelType.Level2);
                     break;
                 case LevelType.Level3:
-                    currentLevel = new GameLevel3(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Level3);
+                    currentLevel = new GameLevel3(Engine.GetTexture("GameAssets/Pantallas/mapa3.png"), LevelType.Level3);
                     break;
                 case LevelType.FightScene:
                     currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);

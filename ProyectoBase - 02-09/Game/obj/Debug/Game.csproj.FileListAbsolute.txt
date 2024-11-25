@@ -504,3 +504,4 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\playerCombat.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\playerIcon.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Personajes\bossIcon.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\GameAssets\Pantallas\mapa3.png

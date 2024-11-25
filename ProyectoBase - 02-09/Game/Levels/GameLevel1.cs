@@ -16,7 +16,7 @@ namespace Game
         private TransformData SpawnPoint;
         private TransformData coinSpawn;
         private bool npcMsg = false;
-        private float coinCD= 1.5f;
+        private float coinCD= 1f;
         private float coinTimer;
         private float msgTimer;
        

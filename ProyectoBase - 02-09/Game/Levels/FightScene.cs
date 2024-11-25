@@ -102,9 +102,6 @@ namespace Game
                 firstTurn = false;
 
             }
-
-            Console.WriteLine(currentTurn);
-            Console.WriteLine(lastTurn);
             switch (currentTurn)
             {
                 
