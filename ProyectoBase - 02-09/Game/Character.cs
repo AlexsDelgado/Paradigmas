@@ -3,17 +3,6 @@ namespace Game
     public class Character : Entity
     {
         
-        public Character(string name, string texture, float hp, float str, float spd, float xPos, float yPos) : base(name, texture, hp, str, spd, xPos, yPos)
-        {
-            base.name = name;
-            base.texture = texture;
-            base.hp = hp;
-            base.str = str;
-            base.spd = spd;
-            base.xPos = xPos;
-            base.yPos = yPos;
-        }
-
         public Character(string name, float hp, float str, float spd, TransformData transform) : base(name, hp, str, spd, transform)
         {
             base.name = name;
@@ -56,13 +45,5 @@ namespace Game
             renderer.Texture = texture;
             renderer.Draw();
         }
-
-
-
-        //public TransformData getTransform()
-        //{
-        //    return transform;
-        //}
-
     }
 }

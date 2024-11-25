@@ -335,3 +335,9 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debu
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Sprites\Shadow1.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Sprites\Shadow2.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Sprites\vendorRug.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Pantallas\mapa3.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Personajes\bat.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Personajes\batIcon.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Personajes\bossIcon.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Personajes\playerCombat.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\UnitTestProject1\bin\Debug\GameAssets\Personajes\playerIcon.png

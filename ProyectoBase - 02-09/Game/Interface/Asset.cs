@@ -30,10 +30,8 @@ namespace Game
         }
         public Asset()
         {
-           
-
-           transform = new TransformData(0,0);
-           renderer = new RendererComponent();
+            transform = new TransformData(0,0);
+            renderer = new RendererComponent();
             renderer.ScaleX = 1;
             renderer.ScaleY = 1;
 
@@ -45,12 +43,10 @@ namespace Game
             texture = _texture;
        
         }
-
         public TransformData GetTransform()
         {
             return transform;
         }
-
 
         public void Draw()
         {

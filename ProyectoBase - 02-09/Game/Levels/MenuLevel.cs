@@ -64,7 +64,7 @@ namespace Game
                 }
                 else if (selectedButtonIndex == 1)
                 {
-
+               
                     Engine.Clear();
                 }
             }

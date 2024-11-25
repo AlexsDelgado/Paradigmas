@@ -40,7 +40,7 @@ namespace Game
 
                     case 2:
                         float hp = GameManager.Instance.currentPlayer.GetHp();
-                        GameManager.Instance.currentPlayer.SetStr(hp + 20);
+                        GameManager.Instance.currentPlayer.SetHp(hp + 20);
                         Engine.Debug($"Player HP: { GameManager.Instance.currentPlayer.GetHp()}");
                         break;
 

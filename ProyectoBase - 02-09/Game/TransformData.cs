@@ -13,6 +13,7 @@
         public float PositionY { get => positionY; set => positionY = value; }
         public float Scale { get => scale; set => scale = value; }
         public float Rotation { get => rotation; set => rotation = value; }
+        public Vector2 Transform { get => transform; set => transform = value; }
 
         public TransformData(float x, float y)
         {

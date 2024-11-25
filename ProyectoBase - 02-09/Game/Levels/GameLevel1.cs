@@ -14,7 +14,7 @@ namespace Game
         private Coin coins;
         private TimeManager timeManager;
         private TransformData SpawnPoint;
-        private TransformData coinSpawn;
+        private TransformData npcSpawn;
         private bool npcMsg = false;
         private float coinCD= 1f;
         private float coinTimer;
@@ -36,25 +36,22 @@ namespace Game
                 Console.WriteLine(coin._cost);
             }
 
-            SpawnPoint = new TransformData(543 ,88); 
-            //SpawnPoint.SetPosition(543, 88);
-            coinSpawn = new TransformData(10, 300);
+            SpawnPoint = new TransformData(543 ,88);
+            npcSpawn = new TransformData(400, 200);
+            //coinSpawn = new TransformData(10, 300);
 
             Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
             GameManager.Instance.currentPlayer = player;
-            //player.CreateCharacter(SpawnPoint, "GameAssets/Personajes/down.png");
-            GameManager.Instance.currentPlayer.CreateCharacter(SpawnPoint, "GameAssets/Personajes/down.png", "GameAssets/Personajes/playerCombat.png");
-            //coins = new Coin("GameAssets/Assets/coin.png", coinSpawn, 0.5f, 0.5f);
-            //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
-            coins = GameManager.Instance.coinPool.GetObject();
-            //coins.CreateAsset(coinSpawn, "GameAssets/Assets/coin.png");
-            //  coins.SetCost(10);
 
-            //GameManager.Instance.currentPlayer = player;
+            GameManager.Instance.currentPlayer.CreateCharacter(SpawnPoint, "GameAssets/Personajes/down.png", "GameAssets/Personajes/playerCombat.png");
+            coins = GameManager.Instance.coinPool.GetObject();
+
 
 
             playerController = new PlayerController(GameManager.Instance.currentPlayer);
-            john = new npc("John", "GameAssets/Personajes/vendor.png", 50, 1, 1, 400, 200);
+            john = new npc("John", npcSpawn);
+            john.CreateCharacter("GameAssets/Personajes/vendor.png");
+
             cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 400);
             timeManager = new TimeManager();
         }
@@ -62,8 +59,6 @@ namespace Game
         public override void Update()
         {
   
-        //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionX);
-        //    Console.WriteLine(GameManager.Instance.coinPool.GetObject().GetTransform().PositionY);
             float deltaTime = timeManager.GetDeltaTime();
             coinTimer += deltaTime;
            
@@ -113,7 +108,6 @@ namespace Game
             if (npcMsg)
             {
                 msgTimer += deltaTime;
-                Console.WriteLine(msgTimer);
                 if (msgTimer > 3)
                 {
                     npcMsg = false;

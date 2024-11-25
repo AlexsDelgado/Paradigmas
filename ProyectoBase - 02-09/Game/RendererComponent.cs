@@ -16,14 +16,6 @@
         {
             
             Engine.Draw(_texture,_transform.PositionX,_transform.PositionY);
-            //Engine.Draw(_texture, _transform.Position.X, _transform.Position.Y,_scaleBaseX,_scaleBaseY);
         }
-        public void Draw(string _texture, float _x, float _y)
-        {
-            Engine.Draw(_texture, _x, _y);
-            //Engine.Draw(_texture, _transform.Position.X, _transform.Position.Y, _scaleBaseX, _scaleBaseY);
-        }
-
-        // Engine.Draw(player.GetTexture(), player.GetXPos(), player.GetYPos());
     }
 }

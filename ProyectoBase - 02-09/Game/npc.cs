@@ -10,18 +10,6 @@ namespace Game
     {
         public int _cost { get; set ; }
 
-        public npc(string name, string texture, float hp, float str, float spd, float xPos, float yPos) : base(name,
-        texture, hp, str, spd, xPos, yPos)
-        {
-            base.name = name;
-            base.texture = texture;
-            base.hp = hp;
-            base.str = str;
-            base.spd = spd;
-            base.xPos = xPos;
-            base.yPos = yPos;
-        }
-
         public npc(string _name, TransformData _transform)
         {
             name = _name;
@@ -37,6 +25,13 @@ namespace Game
             renderer.Draw();
         }
 
+
+        public void Interact()
+        {
+            Console.WriteLine("Selecciona tu compra");
+        }
+
+
         public void CreateCharacter(string _texture)
         {
             
@@ -48,9 +43,6 @@ namespace Game
             texture = renderer.Texture;
         }
 
-        public void Interact()
-        {
-            Console.WriteLine("Selecciona tu compra");
-        }
+      
     }
 }

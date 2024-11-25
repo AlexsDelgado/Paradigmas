@@ -15,6 +15,7 @@ namespace Game
             this.npcController = npcController;
             this.enemyController = enemyController;
         }
+    
 
         public void UpdateLevelCollisions()
         {
@@ -24,7 +25,7 @@ namespace Game
                 new Vector2(npcController.GetNPC().GetXPos(), npcController.GetNPC().GetYPos()),
                 new Vector2(50, 50)))
             {
-                Engine.Debug("COLISIONANDO");
+                //Engine.Debug("COLISIONANDO");
             }
 
             if (CollisionsUtilities.IsBoxColliding(
