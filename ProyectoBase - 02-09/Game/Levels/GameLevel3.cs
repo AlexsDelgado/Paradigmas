@@ -45,7 +45,7 @@ namespace Game
             itemFactory = new ItemFactory();
             items = itemFactory.CreateItems();
 
-            shop = new TransformData(200,50);
+            shop = new TransformData(350,50);
             john = new npc("Merchant",shop);
             john.CreateCharacter("GameAssets/Personajes/vendor.png");
 
@@ -56,7 +56,7 @@ namespace Game
             GameManager.Instance.currentEnemy.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
 
           alfombra = new Items("alfombra", "GameAssets/Assets/Alfombra.png", 10, 1, 1, 395, 70);
-            cartel = new Items("cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 20, 70);
+            cartel = new Items("cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 50, 50);
         }
 
         public override void Update()
@@ -181,7 +181,7 @@ namespace Game
             john.CharacterDraw();
             if (colisionVendor)
             {
-                Engine.Draw(Engine.GetTexture("GameAssets/Assets/SHOP MENU.png"), john.GetXPos(), john.GetYPos() + 20);
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/SHOP MENU.png"), john.GetXPos() + 40, john.GetYPos() - 10);
             }
 
             if(anyBuy)
