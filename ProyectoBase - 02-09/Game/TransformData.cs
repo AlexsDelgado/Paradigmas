@@ -6,6 +6,7 @@
         private float positionY;
         private float scale;
         private float rotation;
+        private Vector2 transform;
 
         
         public  float PositionX { get => positionX; set => positionX = value; }
@@ -17,12 +18,14 @@
         {
             positionX = x;
             positionY = y;
-
+            transform = new Vector2(positionX, positionY);
         }
         public void SetPosition(float x, float y)
         {
             positionX = x;
             positionY = y;
+            transform.X = positionX;
+            transform.Y = positionY;
         }
    
     }
