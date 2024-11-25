@@ -21,16 +21,17 @@ namespace Game
         public GameLevel1(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
 
-            GameManager.Instance.coinPool = new ObjectPool<Coin>(2);
-            for (int i = 0; i < 2; i++)
+            GameManager.Instance.coinPool = new ObjectPool<Coin>(3);
+            for (int i = 0; i < 3; i++)
             {
                 Coin coin = GameManager.Instance.coinPool.GetObject();
                 coin.Initialize($"GameAssets/Assets/coin{i + 1}.png", new TransformData(100 * (i + 1), 430), 1.0f, 1.0f);
-                coin.SetCost(i + 1);
+                coin.SetCost(i* 2+1);
                 GameManager.Instance.coinPool.ReturnObject(coin);
                 Console.WriteLine(coin.GetTexture());
                 Console.Write(coin.GetTransform().PositionX);
                 Console.WriteLine(coin.GetTransform().PositionY);
+                Console.WriteLine(coin._cost);
                 
             }
 
@@ -98,6 +99,13 @@ namespace Game
                 {
                     coins.Interact();
                     coinTimer = 0;
+                    Coin nextCoin = GameManager.Instance.coinPool.GetObject();
+                    coins = nextCoin;
+                    //Random random = new Random();
+                    //int randomX = random.Next(0, 750);
+                    //int randomY = random.Next(0, 535);
+                    //nextCoin.transform.PositionX = randomX; // Configurar la nueva posición según sea necesario
+                    //nextCoin.transform.PositionY = randomY;
                 }
                 
             }

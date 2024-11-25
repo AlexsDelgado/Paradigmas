@@ -33,13 +33,13 @@ namespace Game
             Console.WriteLine("MONEDAS SUMADAS: ", _cost);
             Console.WriteLine(GameManager.Instance.coins);
             GameManager.Instance.coinPool.ReturnObject(this);
-            Coin nextCoin = GameManager.Instance.coinPool.GetObject(); 
+        //    Coin nextCoin = GameManager.Instance.coinPool.GetObject(); 
           
-            Random random = new Random();
-            int randomX = random.Next(0, 750);
-            int randomY = random.Next(0, 535);
-            nextCoin.transform.PositionX = randomX; // Configurar la nueva posición según sea necesario
-            nextCoin.transform.PositionY = randomY;
+        //    Random random = new Random();
+        //    int randomX = random.Next(0, 750);
+        //    int randomY = random.Next(0, 535);
+        //    nextCoin.transform.PositionX = randomX; // Configurar la nueva posición según sea necesario
+        //    nextCoin.transform.PositionY = randomY;
         }
 
         public void SetCost(int cost)
