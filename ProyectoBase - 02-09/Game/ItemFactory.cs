@@ -45,7 +45,6 @@ namespace Game
             {
                 return CreateItem(itemDefinition.id, itemDefinition.cost, itemDefinition.position, itemDefinition.texture);
             }
-            // Optionally, handle the case when item is not found (e.g., throw an exception or return null)
             return null;
         }
 

@@ -104,7 +104,7 @@ namespace Game
                     //Random random = new Random();
                     //int randomX = random.Next(0, 750);
                     //int randomY = random.Next(0, 535);
-                    //nextCoin.transform.PositionX = randomX; // Configurar la nueva posición según sea necesario
+                    //nextCoin.transform.PositionX = randomX;
                     //nextCoin.transform.PositionY = randomY;
                 }
                 

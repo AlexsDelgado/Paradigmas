@@ -38,7 +38,7 @@ namespace Game
         //    Random random = new Random();
         //    int randomX = random.Next(0, 750);
         //    int randomY = random.Next(0, 535);
-        //    nextCoin.transform.PositionX = randomX; // Configurar la nueva posición según sea necesario
+        //    nextCoin.transform.PositionX = randomX;
         //    nextCoin.transform.PositionY = randomY;
         }
 
@@ -49,7 +49,6 @@ namespace Game
 
         public void Reset()
         {
-            // Restablecer el estado de la moneda si es necesario
             transform.PositionX = 1000;
             transform.PositionY = 1000;
         }
