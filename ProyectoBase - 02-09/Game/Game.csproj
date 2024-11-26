@@ -58,6 +58,7 @@
     <Compile Include="Levels\GameLevel1.cs" />
     <Compile Include="Levels\GameLevel2.cs" />
     <Compile Include="Levels\GameLevel3.cs" />
+    <Compile Include="Levels\ShopLevel.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Levels\LevelManager.cs" />
     <Compile Include="Levels\LevelType.cs" />

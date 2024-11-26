@@ -13,7 +13,10 @@ namespace Game
         private TimeManager timeManager;
         private TransformData spawnPoint;
         private TransformData enemySpawn;
-        private Items cartel;
+        private Asset cartel;
+        private Asset cartel2;
+        private TransformData spawnCartelShop;
+        private TransformData spawnCartelBoss;
         private bool enemyDefeated =false;
 
 
@@ -23,10 +26,32 @@ namespace Game
             spawnPoint.SetPosition(50, 50);
             enemySpawn = new TransformData(0, 0);
             enemySpawn.SetPosition(400,250);
-            //Character player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 5, 50, 50);
-            //Character player = new Character("Hero", 100, 10, 5, SpawnPoint);
-            //player.CreateCharacter(SpawnPoint, "GameAssets/movimiento1.png");
+
+
+            spawnCartelBoss = new TransformData(400, 500);
+            spawnCartelShop = new TransformData(700, 250);
+
+
             Character player = GameManager.Instance.currentPlayer;
+
+            Console.WriteLine(GameManager.Instance.lastLevel);
+            switch (GameManager.Instance.lastLevel)
+            {
+                case 0:
+                    GameManager.Instance.currentPlayer.Movement(spawnPoint.PositionX, spawnPoint.PositionY);
+                    break;
+                case 1:
+                    GameManager.Instance.currentPlayer.Movement(spawnCartelBoss.PositionX, spawnCartelBoss.PositionY);
+                    break;
+                case 2:
+                    GameManager.Instance.currentPlayer.Movement(spawnCartelShop.PositionX, spawnCartelShop.PositionY);
+                    break;
+                default:
+                    
+                    break;
+            }
+
+
            
             playerController = new PlayerController(player);
 
@@ -47,9 +72,16 @@ namespace Game
             GameManager.Instance.currentEnemy = badGuy;
             GameManager.Instance.currentEnemy.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy.png");
             timeManager = new TimeManager();
-            cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
 
-        
+            cartel = new Asset();
+            cartel2 = new Asset();
+            cartel.CreateAsset(spawnCartelBoss, "GameAssets/Assets/cartel.png");
+            cartel2.CreateAsset(spawnCartelShop, "GameAssets/Assets/cartel.png");
+            //cartel = new Items("Cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 400, 500);
+            //cartel2 = new Items("Cartel2", "GameAssets/Assets/cartel.png", 10, 1, 1, 700, 250);
+
+
+
         }
 
         public override void Update()
@@ -77,11 +109,24 @@ namespace Game
 
             if (CollisionsUtilities.IsBoxColliding(
                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-                 new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
+                 new Vector2(cartel.GetTransform().PositionX, cartel.GetTransform().PositionY), new Vector2(50, 50)))
             {
                 if (Engine.GetKey(Keys.E))
                 {
                     GameManager.Instance.ChangeLevel(LevelType.Level3);
+                    GameManager.Instance.lastLevel = 1;
+                }
+
+            }
+
+            if (CollisionsUtilities.IsBoxColliding(
+                new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                new Vector2(cartel2.GetTransform().PositionX, cartel2.GetTransform().PositionY), new Vector2(50, 50)))
+            {
+                if (Engine.GetKey(Keys.E))
+                {
+                    GameManager.Instance.ChangeLevel(LevelType.Shop);
+                    GameManager.Instance.lastLevel = 2;
                 }
 
             }
@@ -91,19 +136,20 @@ namespace Game
         {
             Engine.Draw(background);
             Character player = playerController.GetPlayer();
-          
-            Engine.Draw(cartel.GetTexture(), cartel.GetXPos(), cartel.GetYPos());
+
+            float shopX, shopY, bossX, bossY;
+            shopX = cartel2.GetTransform().PositionX;
+            shopY = cartel2.GetTransform().PositionY;
+            bossX = cartel.GetTransform().PositionX;
+            bossY = cartel.GetTransform().PositionY;
+
+            Engine.Draw(cartel.GetTexture(), bossX, bossY);
+            Engine.Draw(cartel2.GetTexture(), shopX, shopY);
+            
 
             if (!enemyDefeated)
             {
                 badGuy.EnemyDraw();
-                if (CollisionsUtilities.IsBoxColliding(
-                     new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
-                     new Vector2(cartel.GetXPos(), cartel.GetYPos()), new Vector2(50, 50)))
-                {
-                    Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), cartel.GetXPos(), cartel.GetYPos() - 20);
-                }
-
                 if (CollisionsUtilities.IsBoxColliding(
                     new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
                     new Vector2(badGuy.GetXPos(), badGuy.GetYPos()), new Vector2(50, 50)))
@@ -113,7 +159,19 @@ namespace Game
 
                 }
             }
-           
+            if (CollisionsUtilities.IsBoxColliding(
+                    new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                    new Vector2(bossX, bossY), new Vector2(50, 50)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), bossX, bossY- 20);
+            }
+            if (CollisionsUtilities.IsBoxColliding(
+                 new Vector2(player.GetXPos(), player.GetYPos()), new Vector2(20, 20),
+                 new Vector2(shopX, shopY), new Vector2(50, 50)))
+            {
+                Engine.Draw(Engine.GetTexture("GameAssets/Assets/teclaE.png"), shopX, shopY- 20);
+            }
+
             player.CharacterDraw();
 
      

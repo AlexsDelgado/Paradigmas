@@ -16,6 +16,7 @@ namespace Game
         public int coins;
         public ObjectPool<Coin> coinPool;
         public bool enemyDefeated=false;
+        public int lastLevel =0;
     
 
 
@@ -61,6 +62,9 @@ namespace Game
                     break;
                 case LevelType.Level3:
                     currentLevel = new GameLevel3(Engine.GetTexture("GameAssets/Pantallas/mapa3.png"), LevelType.Level3);
+                    break;
+                case LevelType.Shop:
+                    currentLevel = new ShopLevel(Engine.GetTexture("GameAssets/Pantallas/mapa1.png"), LevelType.Shop);
                     break;
                 case LevelType.FightScene:
                     currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);
