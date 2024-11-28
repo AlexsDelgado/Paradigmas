@@ -101,6 +101,7 @@ namespace Game
                 {
                     if (Engine.GetKey(Keys.E))
                     {
+                        GameManager.Instance.actualLevel = 0;
                         GameManager.Instance.ChangeLevel(LevelType.FightScene);
                     }
                 }

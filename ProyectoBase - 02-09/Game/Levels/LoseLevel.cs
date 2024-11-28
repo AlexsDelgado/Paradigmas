@@ -21,7 +21,11 @@ namespace Game
 
         public override void Update()
         {
+            if (Engine.GetKey(Keys.ESCAPE))
+            {
+                GameManager.Instance.ChangeLevel(LevelType.Menu);
 
+            }
         }
     }
 }

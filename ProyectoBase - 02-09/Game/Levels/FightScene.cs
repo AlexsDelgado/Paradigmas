@@ -212,13 +212,24 @@ namespace Game
 
         private void PlayerDefeat()
         {
+            GameManager.Instance.ResetGame();
             GameManager.Instance.ChangeLevel(LevelType.LoseScene);
         }
         private void EnemyDefeat()
         {
             GameManager.Instance.enemyDefeated = true;
             GameManager.Instance.coins++;
-            GameManager.Instance.ChangeLevel(LevelType.Level2);
+            GameManager.Instance.currentEnemy = null;
+
+            if (GameManager.Instance.actualLevel== 2)
+            {
+                GameManager.Instance.ChangeLevel(LevelType.Shop);
+            }
+            else
+            {
+                GameManager.Instance.ChangeLevel(LevelType.Level2);
+            }
+ 
         }
         private void DamageLog(float damage, string name)
         {

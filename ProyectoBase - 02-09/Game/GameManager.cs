@@ -16,7 +16,12 @@ namespace Game
         public int coins;
         public ObjectPool<Coin> coinPool;
         public bool enemyDefeated=false;
+        //0 mapa 2
+        //1 shop
+        //2 boss
         public int lastLevel =0;
+        public int actualLevel;
+        public float score;
     
 
 
@@ -100,7 +105,13 @@ namespace Game
             
         }
         
-        
+        public void ResetGame()
+        {
+            coins = 0;
+            currentEnemy = null;
+            playerArmor = 0;
+            enemyDefeated = false;
+        }
         public void Update()
         {
             currentLevel.Update();
