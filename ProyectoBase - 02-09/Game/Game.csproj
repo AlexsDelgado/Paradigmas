@@ -319,6 +319,33 @@
     <Content Include="GameAssets\ship.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Sprites\1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameAssets\Sprites\9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Sprites\coin1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -331,6 +358,9 @@
     <Content Include="GameAssets\Sprites\interact.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameAssets\Sprites\ScoreButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameAssets\Sprites\Shadow1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -341,6 +371,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="location2.png" />
+    <Content Include="Textures\Alexs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\Animations\Bullet\0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -437,6 +470,9 @@
     <Content Include="Textures\Buttons\Attack\AttackButton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\Buttons\Credits\CreditsButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\Buttons\Credits\CreditsButton1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -461,6 +497,15 @@
     <Content Include="Textures\Buttons\Quit\QuitButton2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\Buttons\Score\ScoreButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\CreditsMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Martin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -482,6 +527,9 @@
     <Content Include="Textures\Projectiles\SpecialBullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\ScoreBoard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\Screens\Credits.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -500,6 +548,15 @@
     <Content Include="Textures\ship.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\System\1.png" />
+    <Content Include="Textures\System\2.png" />
+    <Content Include="Textures\System\3.png" />
+    <Content Include="Textures\System\4.png" />
+    <Content Include="Textures\System\5.png" />
+    <Content Include="Textures\System\6.png" />
+    <Content Include="Textures\System\7.png" />
+    <Content Include="Textures\System\8.png" />
+    <Content Include="Textures\System\9.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

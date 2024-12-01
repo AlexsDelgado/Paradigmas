@@ -283,9 +283,7 @@ namespace Game
                 {
                     case 0:
                         item1 = items.Find(item => item.GetId() == shopInstance);
-                        
                         if (item1 != default) item1.Draw();
-
                         break;
 
                     case 1:
@@ -302,7 +300,6 @@ namespace Game
                         }
                         break;
                     default:
-
                         break;
 
                 }
@@ -316,33 +313,6 @@ namespace Game
                 {
                     if (item != null) item.Draw();
                 }
-                //switch (shopInstance)
-                //{
-                //    case 0:
-                //        item1 = items.Find(item => item.GetId() == shopInstance);
-                //        if (item1 != default) item1.Draw();
-
-                //        break;
-
-                //    case 1:
-                //        items.Find(item => item.GetId() == shopInstance).Draw();
-                //        break;
-
-                //    case 2:
-                //        items.Find(item => item.GetId() == shopInstance).Draw();
-                //        break;
-                //    case 3:
-                //        foreach (var item in items)
-                //        {
-                //            if (item != null) item.Draw();
-                //        }
-                //        break;
-                //    default:
-
-                //        break;
-
-                //}
-
             }
             if(GameManager.Instance.currentEnemy!=null) GameManager.Instance.currentEnemy.EnemyDraw();
            //enemy1.EnemyDraw();
