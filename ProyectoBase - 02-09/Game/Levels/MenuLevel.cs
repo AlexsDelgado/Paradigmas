@@ -166,6 +166,8 @@ namespace Game
                 if (Engine.GetKey(Keys.Num3))
                 {
                     selectedButtonIndex = 2;
+                    Console.WriteLine("scores:");
+                    GameManager.Instance.printScores();
                 }
                 if (Engine.GetKey(Keys.Num4))
                 {
@@ -230,7 +232,7 @@ namespace Game
         public void CheckScore()
         {
             //GameManager.Instance.ScoreSort();
-        
+    
             if (GameManager.Instance.scoreboardList.Count > 0)
             {
                 string[] score1 = ScoreTexture(GameManager.Instance.scoreboardList[0]);

@@ -60,6 +60,7 @@ namespace Game
             switch (levelType)
             {
                 case LevelType.Menu:
+                   
                     currentLevel = new MenuLevel(Engine.GetTexture("GameAssets/Pantallas/MenuLevel.png"), LevelType.Menu);
                     break;
                 case LevelType.Level1:
@@ -78,9 +79,11 @@ namespace Game
                     currentLevel = new FightScene(Engine.GetTexture("GameAssets/Pantallas/Forest.png"), LevelType.FightScene);
                     break;
                 case LevelType.WinScene:
+                    ScoreBoardUpdate();
                     currentLevel = new WinLevel(Engine.GetTexture("GameAssets/Pantallas/YouWin.png"), LevelType.WinScene);
                     break;
                 case LevelType.LoseScene:
+                    //ScoreBoardUpdate();
                     currentLevel = new LoseLevel(Engine.GetTexture("GameAssets/Pantallas/background1.png"), LevelType.LoseScene);
                     break;
                 case LevelType.BossFight:
@@ -131,9 +134,8 @@ namespace Game
         }
         public void ScoreUpdate()
         {
-            //score += coins;
+            score += coins;
             Console.WriteLine($"Score Final: {score}");
-            ScoreBoardUpdate();
         }
         public void ScoreBoardUpdate()
         {
@@ -151,10 +153,15 @@ namespace Game
             scoreboardList.Sort((a, b) => b.CompareTo(a));
         }
 
-         
-        
 
 
+        public void printScores()
+        {
+            foreach (int item in scoreboardList)
+            {
+                Console.WriteLine(item);
+            }
+        }
 
 
     }

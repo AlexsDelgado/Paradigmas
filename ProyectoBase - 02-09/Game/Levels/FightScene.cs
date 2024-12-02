@@ -210,7 +210,7 @@ namespace Game
             GameManager.Instance.enemyDefeated = true;
             GameManager.Instance.coins++;
             GameManager.Instance.currentEnemy = null;
-            GameManager.Instance.ScoreUpdate(5);
+            //GameManager.Instance.ScoreUpdate(5);
             
 
             if (GameManager.Instance.actualLevel== 2)
