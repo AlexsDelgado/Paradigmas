@@ -137,17 +137,18 @@ namespace Game
             score += coins;
             Console.WriteLine($"Score Final: {score}");
         }
+
         public void ScoreBoardUpdate()
         {
-            
-            //String[] newScoreGG = ScoreTexture();
-            //for (int i=0; i<newScoreGG.Length; i++)
-            //{
-            //    Console.WriteLine(newScoreGG[i]);
-            //}
             scoreboardList.Add(score);
-            //scoreboard.Add(newScoreGG);
+            ScoreSort();
+            if (scoreboardList.Count > 3)
+            {
+                scoreboardList = scoreboardList.Take(3).ToList();
+            }
         }
+
+
         public void ScoreSort()
         {
             scoreboardList.Sort((a, b) => b.CompareTo(a));

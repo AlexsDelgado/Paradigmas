@@ -229,138 +229,159 @@ namespace Game
                 creditsMenu = false;
             }
         }
+        //public void CheckScore()
+        //{
+        //    GameManager.Instance.ScoreSort();
+
+        //    if (GameManager.Instance.scoreboardList.Count > 0)
+        //    {
+        //        string[] score1 = ScoreTexture(GameManager.Instance.scoreboardList[0]);
+        //        Console.WriteLine(GameManager.Instance.scoreboardList[0]);
+        //        for (int i = 0; i < score1.Length; i++)
+        //        {
+        //            if (!string.IsNullOrEmpty(score1[i]))
+        //            {
+
+        //                switch (i)
+        //                {
+        //                    case 0:
+        //                        score1_1.CreateAsset(new TransformData(250, 150), score1[i]);
+        //                        Console.WriteLine($"Posicion 0 { score1[i]}");
+        //                        break;
+        //                    case 1:
+        //                        score1_2.CreateAsset(new TransformData(280, 150), score1[i]);
+        //                        Console.WriteLine($"Posicion 1 { score1[i]}");
+        //                        break;
+        //                    case 2:
+        //                        score1_3.CreateAsset(new TransformData(310, 150), score1[i]);
+        //                        Console.WriteLine($"Posicion 2 { score1[i]}");
+        //                        break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    if (GameManager.Instance.scoreboardList.Count > 1)
+        //    {
+        //        string[] score2 = ScoreTexture(GameManager.Instance.scoreboardList[1]);
+        //        Console.WriteLine(GameManager.Instance.scoreboardList[1]);
+        //        for (int i = 0; i < score2.Length; i++)
+        //        {
+        //            if (!string.IsNullOrEmpty(score2[i]))
+        //            {
+
+        //                switch (i)
+        //                {
+        //                    case 0:
+        //                        score2_1.CreateAsset(new TransformData(250, 200), score2[i]);
+        //                        Console.WriteLine($"Posicion 0 { score2[i]}");
+        //                        break;
+        //                    case 1:
+        //                        score2_2.CreateAsset(new TransformData(280, 200), score2[i]);
+        //                        Console.WriteLine($"Posicion 1 { score2[i]}");
+        //                        break;
+        //                    case 2:
+        //                        score2_3.CreateAsset(new TransformData(310, 200), score2[i]);
+        //                        Console.WriteLine($"Posicion 2 { score2[i]}");
+        //                        break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    if (GameManager.Instance.scoreboardList.Count > 2)
+        //    {
+        //        string[] score3 = ScoreTexture(GameManager.Instance.scoreboardList[2]);
+        //        Console.WriteLine(GameManager.Instance.scoreboardList[2]);
+        //        for (int i = 0; i < score3.Length; i++)
+        //        {
+        //            if (!string.IsNullOrEmpty(score3[i]))
+        //            {
+
+        //                switch (i)
+        //                {
+        //                    case 0:
+        //                        score2_1.CreateAsset(new TransformData(250, 200), score3[i]);
+        //                        Console.WriteLine($"Posicion 0 { score3[i]}");
+        //                        break;
+        //                    case 1:
+        //                        score2_2.CreateAsset(new TransformData(280, 200), score3[i]);
+        //                        Console.WriteLine($"Posicion 1 { score3[i]}");
+        //                        break;
+        //                    case 2:
+        //                        score2_3.CreateAsset(new TransformData(310, 200), score3[i]);
+        //                        Console.WriteLine($"Posicion 2 { score3[i]}");
+        //                        break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         public void CheckScore()
         {
-            //GameManager.Instance.ScoreSort();
-    
+            GameManager.Instance.ScoreSort();
+            ClearScoreTextures();
+
             if (GameManager.Instance.scoreboardList.Count > 0)
             {
-                string[] score1 = ScoreTexture(GameManager.Instance.scoreboardList[0]);
-                Console.WriteLine(GameManager.Instance.scoreboardList[0]);
-                for (int i = 0; i < score1.Length; i++)
-                {
-                    if (!string.IsNullOrEmpty(score1[i]))
-                    {
-
-                        switch (i)
-                        {
-                            case 0:
-                                score1_1.CreateAsset(new TransformData(250, 150), score1[i]);
-                                Console.WriteLine($"Posicion 0 { score1[i]}");
-                                break;
-                            case 1:
-                                score1_2.CreateAsset(new TransformData(280, 150), score1[i]);
-                                Console.WriteLine($"Posicion 1 { score1[i]}");
-                                break;
-                            case 2:
-                                score1_3.CreateAsset(new TransformData(310, 150), score1[i]);
-                                Console.WriteLine($"Posicion 2 { score1[i]}");
-                                break;
-                        }
-                    }
-                }
+                string[] score1Textures = ScoreTexture(FormatScore(GameManager.Instance.scoreboardList[0]));
+                UpdateScoreTextures(score1Textures, new List<Asset> { score1_1, score1_2, score1_3 });
             }
+
+      
             if (GameManager.Instance.scoreboardList.Count > 1)
             {
-                string[] score2 = ScoreTexture(GameManager.Instance.scoreboardList[1]);
-                Console.WriteLine(GameManager.Instance.scoreboardList[1]);
-                for (int i = 0; i < score2.Length; i++)
-                {
-                    if (!string.IsNullOrEmpty(score2[i]))
-                    {
-
-                        switch (i)
-                        {
-                            case 0:
-                                score2_1.CreateAsset(new TransformData(250, 200), score2[i]);
-                                Console.WriteLine($"Posicion 0 { score2[i]}");
-                                break;
-                            case 1:
-                                score2_2.CreateAsset(new TransformData(280, 200), score2[i]);
-                                Console.WriteLine($"Posicion 1 { score2[i]}");
-                                break;
-                            case 2:
-                                score2_3.CreateAsset(new TransformData(310, 200), score2[i]);
-                                Console.WriteLine($"Posicion 2 { score2[i]}");
-                                break;
-                        }
-                    }
-                }
+                string[] score2Textures = ScoreTexture(FormatScore(GameManager.Instance.scoreboardList[1]));
+                UpdateScoreTextures(score2Textures, new List<Asset> { score2_1, score2_2, score2_3 });
             }
+
             if (GameManager.Instance.scoreboardList.Count > 2)
             {
-                string[] score3 = ScoreTexture(GameManager.Instance.scoreboardList[2]);
-                Console.WriteLine(GameManager.Instance.scoreboardList[2]);
-                for (int i = 0; i < score3.Length; i++)
-                {
-                    if (!string.IsNullOrEmpty(score3[i]))
-                    {
+                string[] score3Textures = ScoreTexture(FormatScore(GameManager.Instance.scoreboardList[2]));
+                UpdateScoreTextures(score3Textures, new List<Asset> { score3_1, score3_2, score3_3 });
+            }
+        }
 
-                        switch (i)
-                        {
-                            case 0:
-                                score2_1.CreateAsset(new TransformData(250, 200), score3[i]);
-                                Console.WriteLine($"Posicion 0 { score3[i]}");
-                                break;
-                            case 1:
-                                score2_2.CreateAsset(new TransformData(280, 200), score3[i]);
-                                Console.WriteLine($"Posicion 1 { score3[i]}");
-                                break;
-                            case 2:
-                                score2_3.CreateAsset(new TransformData(310, 200), score3[i]);
-                                Console.WriteLine($"Posicion 2 { score3[i]}");
-                                break;
-                        }
-                    }
+        private string FormatScore(int score)
+        {
+            //CADENA 0-1-0
+            return score.ToString("D3");
+        }
+
+
+        private void ClearScoreTextures()
+        {
+            string zeroTexture = "Textures/System/0.png";
+            score1_1.CreateAsset(new TransformData(250, 150), zeroTexture);
+            score1_2.CreateAsset(new TransformData(280, 150), zeroTexture);
+            score1_3.CreateAsset(new TransformData(310, 150), zeroTexture);
+            score2_1.CreateAsset(new TransformData(250, 200), zeroTexture);
+            score2_2.CreateAsset(new TransformData(280, 200), zeroTexture);
+            score2_3.CreateAsset(new TransformData(310, 200), zeroTexture);
+            score3_1.CreateAsset(new TransformData(250, 250), zeroTexture);
+            score3_2.CreateAsset(new TransformData(280, 250), zeroTexture);
+            score3_3.CreateAsset(new TransformData(310, 250), zeroTexture);
+        }
+
+        private void UpdateScoreTextures(string[] scoreTextures, List<Asset> assets)
+        {
+            for (int i = 0; i < scoreTextures.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(scoreTextures[i]) && i < assets.Count)
+                {
+                    assets[i].CreateAsset(new TransformData(250 + (30 * i), 150 + (assets[0].GetTransform().PositionY - 150)), scoreTextures[i]);
                 }
             }
         }
-        public String[] ScoreTexture(int _score)
+
+
+        private string[] ScoreTexture(string formattedScore)
         {
-
-            string scoreArray = _score.ToString();
-            int[] digit = new int[scoreArray.Length];
-            string[] ScoreTexture = new string[scoreArray.Length];
-            for (int i = 0; i < scoreArray.Length; i++)
+            string[] textures = new string[3];
+            for (int i = 0; i < formattedScore.Length; i++)
             {
-                digit[i] = int.Parse(scoreArray[i].ToString());
-                Console.Write(digit[i]);
-                switch (digit[i])
-                {
-                    case 0:
-                        ScoreTexture[i] = "Textures/System/0.png";
-                        break;
-                    case 1:
-                        ScoreTexture[i] = "Textures/System/1.png";
-                        break;
-                    case 2:
-                        ScoreTexture[i] = "Textures/System/2.png";
-                        break;
-                    case 3:
-                        ScoreTexture[i] = "Textures/System/3.png";
-                        break;
-                    case 4:
-                        ScoreTexture[i] = "Textures/System/4.png";
-                        break;
-                    case 5:
-                        ScoreTexture[i] = "Textures/System/5.png";
-                        break;
-                    case 6:
-                        ScoreTexture[i] = "Textures/System/6.png";
-                        break;
-                    case 7:
-                        ScoreTexture[i] = "Textures/System/7.png";
-                        break;
-                    case 8:
-                        ScoreTexture[i] = "Textures/System/8.png";
-                        break;
-                    case 9:
-                        ScoreTexture[i] = "Textures/System/9.png";
-                        break;
-                }
-
+                textures[i] = $"Textures/System/{formattedScore[i]}.png";
             }
-            return ScoreTexture;
+            return textures;
         }
     }
 }
