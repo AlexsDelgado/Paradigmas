@@ -24,7 +24,7 @@ namespace Game
 
             if (Engine.GetKey(Keys.ESCAPE))
             {
-                GameManager.Instance.ResetGame();
+               
                 GameManager.Instance.ChangeLevel(LevelType.Menu);
 
             }

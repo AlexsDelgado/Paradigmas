@@ -21,7 +21,10 @@ namespace Game
         //2 boss
         public int lastLevel =0;
         public int actualLevel;
-        public float score;
+        public int score;
+        public List<string[]> scoreboard;
+        public List<int> scoreboardList;
+        public int[] scoreboardValues;
     
 
 
@@ -38,14 +41,14 @@ namespace Game
                 return instance;
             }
         }
-
         public Level currentLevel;
-
         private GameManager()
         {
             ChangeLevel(LevelType.Menu);
+            scoreboard = new List<string[]>();
+            scoreboardList = new List<int>();
+            scoreboardValues = new int[3];
         }
-
         public void ChangeLevel(LevelType levelType)
         {
             if (currentLevel != null)
@@ -85,9 +88,7 @@ namespace Game
                     break;
 
             }
-        }
-       
-        
+        }        
         public bool CheckCoins(int cost)
         {
             
@@ -104,22 +105,57 @@ namespace Game
 
             
         }
-        
         public void ResetGame()
         {
             coins = 0;
             currentEnemy = null;
             playerArmor = 0;
             enemyDefeated = false;
+            score = 0;
         }
         public void Update()
         {
             currentLevel.Update();
         }
-
         public void Render()
         {
             currentLevel.Render();
         }
+        
+        
+        
+        public void ScoreUpdate(int newScore)
+        {
+            score += newScore;
+            Console.WriteLine($"Score actual: {score}");
+        }
+        public void ScoreUpdate()
+        {
+            //score += coins;
+            Console.WriteLine($"Score Final: {score}");
+            ScoreBoardUpdate();
+        }
+        public void ScoreBoardUpdate()
+        {
+            
+            //String[] newScoreGG = ScoreTexture();
+            //for (int i=0; i<newScoreGG.Length; i++)
+            //{
+            //    Console.WriteLine(newScoreGG[i]);
+            //}
+            scoreboardList.Add(score);
+            //scoreboard.Add(newScoreGG);
+        }
+        public void ScoreSort()
+        {
+            scoreboardList.Sort((a, b) => b.CompareTo(a));
+        }
+
+         
+        
+
+
+
+
     }
 }

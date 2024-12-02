@@ -7,6 +7,7 @@ namespace Game
         protected string name;
         protected string texture;
         protected string combatTexture;
+        protected string combatIcon;
         protected float hp;
         protected float str;
         protected float spd;

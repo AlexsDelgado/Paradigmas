@@ -37,7 +37,7 @@ namespace Game
             boss = new Enemy("Boss", "GameAssets/Personajes/boss.png", "GameAssets/Personajes/bossCombat.png", 100,10,1,bossSpawn);
             //boss.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
             GameManager.Instance.currentEnemy = boss;
-            GameManager.Instance.currentEnemy.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png");
+            GameManager.Instance.currentEnemy.CreateEnemy(bossSpawn, "GameAssets/Personajes/boss.png", "GameAssets/Personajes/bossCombat.png");
 
             cartel = new Items("cartel", "GameAssets/Assets/cartel.png", 10, 1, 1, 50, 50);
         }

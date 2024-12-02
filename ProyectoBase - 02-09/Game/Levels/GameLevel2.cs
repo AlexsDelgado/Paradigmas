@@ -70,7 +70,7 @@ namespace Game
             }
             badGuy = new Enemy("Bat","GameAssets/Personajes/enemy.png", "GameAssets/Personajes/bat.png",50,10,20,enemySpawn);
             GameManager.Instance.currentEnemy = badGuy;
-            GameManager.Instance.currentEnemy.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy.png");
+            GameManager.Instance.currentEnemy.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy.png", "GameAssets/Personajes/batIcon.png");
             timeManager = new TimeManager();
 
             cartel = new Asset();

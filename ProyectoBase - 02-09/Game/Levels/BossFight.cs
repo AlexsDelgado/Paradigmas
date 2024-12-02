@@ -32,10 +32,6 @@ namespace Game
 
         public BossFight(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            //player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
-           
-            //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
-
 
 
             player = GameManager.Instance.currentPlayer;
@@ -47,8 +43,6 @@ namespace Game
             iconPositionEnemy = new TransformData(588, 70);
             hpBarPlayer = new TransformData(10, 10);
             hpBarEnemy = new TransformData(430, 10);
-            //enemy = new Enemy("Boss", "GameAssets/Personajes/boss.png", 100, 10, 100, 400, 100);
-            //enemy.CreateEnemy(enemyPosition, "GameAssets/Personajes/boss.png");
             enemy = GameManager.Instance.currentEnemy;
 
 
@@ -115,23 +109,6 @@ namespace Game
 
         }
 
-        //public override void Render()
-        //{
-        //    Engine.Draw(background);
-        //    //Engine.Draw(enemyIdleAnimation.CurrentFrame, enemy.GetXPos(), enemy.GetYPos());
-        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/BossBackground.png"));
-        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/cave.png"));
-        //    Engine.Draw(enemy.GetTexture(),50,50,0.5f,0.5f);
-        //    Engine.Draw(Engine.GetTexture("GameAssets/Pantallas/battleMenu.png"));
-        //    foreach (var button in buttons)
-        //    {
-        //        button.Render();
-        //    }
-
-        //    Engine.Draw(Engine.GetTexture("Textures/Buttons/Play/SelectedButton.png"), buttons[selectedButtonIndex].GetXPos(), buttons[selectedButtonIndex].GetYPos());
-        //    DrawHealthBar(player, 10, 10);
-        //    DrawHealthBar(enemy, enemy.GetXPos() - 50, enemy.GetYPos() - 30);
-        //}
         public override void Render()
         {
             Engine.Draw(background);
@@ -205,20 +182,17 @@ namespace Game
             currentTurn = 2;
             lastTurn = 1;
 
-            //player.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
-            //Console.WriteLine(GameManager.Instance.playerArmor);
-            //isPlayerTurn = true;
-
-
         }
 
         private void PlayerDefeat()
         {
+            GameManager.Instance.ScoreUpdate();
             GameManager.Instance.ChangeLevel(LevelType.LoseScene);
         }
 
         private void EnemyDefeat()
         {
+            GameManager.Instance.ScoreUpdate();
             GameManager.Instance.ChangeLevel(LevelType.WinScene);
         }
 

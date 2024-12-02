@@ -25,7 +25,7 @@ namespace Game
         private Enemy enemy4;
         private Enemy enemy5;
 
-        private List<(string name,string avatar,string combat, int hp, int at, int speed,TransformData transform)> enemies;
+        private List<(string name,string avatar,string combat, int hp, int at, int speed,TransformData transform,string icon)> enemies;
 
 
         private List<ItemShop> items;
@@ -90,31 +90,31 @@ namespace Game
 
             //enemigos
 
-            enemies = new List<(string, string, string, int,int,int, TransformData)>
+            enemies = new List<(string, string, string, int,int,int, TransformData,string)>
             {
-                ("Bat", "GameAssets/Personajes/enemy.png", "GameAssets/Personajes/bat.png", 100, 10, 1, enemySpawn),
-                ("Imp", "GameAssets/Personajes/enemy2.png", "GameAssets/Personajes/enemy2Combat.png", 100, 10, 1, enemySpawn),
-                ("Orc", "GameAssets/Personajes/enemy3.png", "GameAssets/Personajes/enemy3Combat.png", 100, 10, 1, enemySpawn),
-                ("Slime", "GameAssets/Personajes/enemy4.png", "GameAssets/Personajes/enemy4Combat.png", 100, 10, 1, enemySpawn),
-                ("Minotaur", "GameAssets/Personajes/enemy5.png", "GameAssets/Personajes/enemy5Combat.png", 100, 10, 1, enemySpawn)
+                ("Bat", "GameAssets/Personajes/enemy.png", "GameAssets/Personajes/bat.png", 100, 10, 1, enemySpawn,"GameAssets/Personajes/batIcon.png"),
+                ("Imp", "GameAssets/Personajes/enemy2.png", "GameAssets/Personajes/enemy2Combat.png", 100, 10, 1, enemySpawn,"GameAssets/Personajes/enemy2Icon.png"),
+                ("Orc", "GameAssets/Personajes/enemy3.png", "GameAssets/Personajes/enemy3Combat.png", 100, 10, 1, enemySpawn,"GameAssets/Personajes/enemy3Icon.png"),
+                ("Slime", "GameAssets/Personajes/enemy4.png", "GameAssets/Personajes/enemy4Combat.png", 100, 10, 1, enemySpawn,"GameAssets/Personajes/enemy4Icon.png"),
+                ("Minotaur", "GameAssets/Personajes/enemy5.png", "GameAssets/Personajes/enemy5Combat.png", 100, 10, 1, enemySpawn,"GameAssets/Personajes/enemy5Icon.png")
         };
 
 
             enemy1 = new Enemy("Bat", "GameAssets/Personajes/enemy.png", "GameAssets/Personajes/bat.png", 100, 10, 1, enemySpawn);
-            enemy1.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy.png");
+            enemy1.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy.png", "GameAssets/Personajes/batIcon.png");
 
             enemy2 = new Enemy("Imp", "GameAssets/Personajes/enemy2.png", "GameAssets/Personajes/enemy2Combat.png", 100, 10, 1, enemySpawn);
-            enemy2.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy2.png");
+            enemy2.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy2.png", "GameAssets/Personajes/enemy2Icon.png");
 
 
             enemy3 = new Enemy("Orc", "GameAssets/Personajes/enemy3.png", "GameAssets/Personajes/enemy3Combat.png", 100, 10, 1, enemySpawn);
-            enemy3.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy3.png");
+            enemy3.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy3.png", "GameAssets/Personajes/enemy3Icon.png");
 
             enemy4 = new Enemy("Slime", "GameAssets/Personajes/enemy4.png", "GameAssets/Personajes/enemy4Combat.png", 100, 10, 1, enemySpawn);
-            enemy4.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy4.png");
+            enemy4.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy4.png", "GameAssets/Personajes/enemy4Icon.png");
 
             enemy5 = new Enemy("Minotaur", "GameAssets/Personajes/enemy5.png", "GameAssets/Personajes/enemy5Combat.png", 100, 10, 1, enemySpawn);
-            enemy5.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy5.png");
+            enemy5.CreateEnemy(enemySpawn, "GameAssets/Personajes/enemy5.png", "GameAssets/Personajes/enemy5Icon.png");
 
             GetEnemy();
             //GameManager.Instance.currentEnemy = enemy1;
@@ -132,7 +132,7 @@ namespace Game
 
             if (enemies != default)
             {
-                GameManager.Instance.currentEnemy = new Enemy(enemyRandom.name, enemyRandom.avatar, enemyRandom.combat, enemyRandom.hp, enemyRandom.at, enemyRandom.speed, enemyRandom.transform);
+                GameManager.Instance.currentEnemy = new Enemy(enemyRandom.name, enemyRandom.avatar, enemyRandom.combat, enemyRandom.hp, enemyRandom.at, enemyRandom.speed, enemyRandom.transform, enemyRandom.icon);
 
             }
 

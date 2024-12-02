@@ -19,6 +19,7 @@ namespace Game
         private bool firstTurn;
         private int currentTurn;
         private int lastTurn=0;
+        private string enemyIcon;
 
         TransformData playerPosition;
         TransformData enemyPosition;
@@ -32,9 +33,6 @@ namespace Game
 
         public FightScene(Texture background, LevelType p_levelType) : base(background, p_levelType)
         {
-            //player = new Character("Hero", "GameAssets/movimiento1.png", 100, 10, 2, 10, 400);
-            //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 30,5, 100, 400, 100);
-            //enemy = new Enemy("Mavado", "GameAssets/enemigo1.png", 2, 8, 2, 400, 100);
             player = GameManager.Instance.currentPlayer;
             enemy = GameManager.Instance.currentEnemy;
             playerPosition = new TransformData(100,200);
@@ -46,7 +44,9 @@ namespace Game
 
             player.Movement(playerPosition.PositionX, playerPosition.PositionY);
             enemy.GetTransform().SetPosition(enemyPosition.PositionX, enemyPosition.PositionY);
-           
+            enemyIcon = enemy.GetIcon();
+
+
 
 
 
@@ -116,14 +116,10 @@ namespace Game
                     if (Engine.GetKey(Keys.E))
                     {
 
-                        HandleTurns();
-        
+                        HandleTurns();        
                     }                    
                     break;
             }
-          
-
-            //enemyIdleAnimation.Update();
         }
 
         public override void Render()
@@ -143,7 +139,7 @@ namespace Game
             }
             else
             {
-                Engine.Draw(Engine.GetTexture("GameAssets/Personajes/batIcon.png"), 588, iconPositionEnemy.PositionY);
+                Engine.Draw(Engine.GetTexture(enemyIcon), 588, iconPositionEnemy.PositionY);
 
             }
 
@@ -202,17 +198,11 @@ namespace Game
                 Console.WriteLine($"dmg { enemy.GetStr()}");
                 currentTurn = 2;
                 lastTurn = 1;
-
-            //player.GetDamage(enemy.GetStr(), GameManager.Instance.playerArmor);
-            //Console.WriteLine(GameManager.Instance.playerArmor);
-            //isPlayerTurn = true;
-
-
         }
 
         private void PlayerDefeat()
         {
-            GameManager.Instance.ResetGame();
+            GameManager.Instance.ScoreUpdate();
             GameManager.Instance.ChangeLevel(LevelType.LoseScene);
         }
         private void EnemyDefeat()
@@ -220,6 +210,8 @@ namespace Game
             GameManager.Instance.enemyDefeated = true;
             GameManager.Instance.coins++;
             GameManager.Instance.currentEnemy = null;
+            GameManager.Instance.ScoreUpdate(5);
+            
 
             if (GameManager.Instance.actualLevel== 2)
             {

@@ -556,3 +556,13 @@ D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\S
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\Alexs.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\Martin.png
 D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\Buttons\Credits\CreditsButton.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\0.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\1.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\2.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\3.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\4.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\5.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\6.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\7.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\8.png
+D:\Projects\Paradigmas\Paradigmas\ProyectoBase - 02-09\Game\bin\Debug\Textures\System\9.png

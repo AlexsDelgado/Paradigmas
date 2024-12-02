@@ -17,9 +17,22 @@ namespace Game
         private bool scoreMenu;
         private bool creditsMenu;
         private Asset scoreBoard;
+        private Asset score1;
+        private Asset score1_1;
+        private Asset score1_2;
+        private Asset score1_3;
+        private Asset score2;
+
+        private Asset score2_1;
+        private Asset score2_2;
+        private Asset score2_3;
+        private Asset score3;
+
         private Asset creditsBoard;
         private Asset AlexsCredits;
         private Asset MartinCredits;
+
+        private string[] scores;
 
 
         public MenuLevel(Texture background, LevelType p_levelType) : base(background, p_levelType)
@@ -43,6 +56,42 @@ namespace Game
             MartinCredits.CreateAsset(new TransformData(200, 250), "Textures/Martin.png");
 
 
+            scores = new string[3];
+            score1 = new Asset();
+            score1.CreateAsset(new TransformData(200,150), "Textures/System/1.png");
+            
+            score1_1 = new Asset();
+            score1_1.CreateAsset(new TransformData(250, 150), "Textures/System/0.png");
+            
+            score1_2= new Asset();
+            score1_2.CreateAsset(new TransformData(280, 150), "Textures/System/0.png");
+            
+            score1_3 = new Asset();
+            score1_3.CreateAsset(new TransformData(310, 150), "Textures/System/0.png");
+
+
+
+            score2 = new Asset();
+            score2.CreateAsset(new TransformData(200, 200), "Textures/System/2.png");
+
+
+            score2_1 = new Asset();
+            score2_1.CreateAsset(new TransformData(250, 200), "Textures/System/0.png");
+
+            score2_2 = new Asset();
+            score2_2.CreateAsset(new TransformData(280, 200), "Textures/System/0.png");
+
+            score2_3 = new Asset();
+            score2_3.CreateAsset(new TransformData(310, 200), "Textures/System/0.png");
+
+
+
+
+            score3 = new Asset();
+            score3.CreateAsset(new TransformData(200, 250), "Textures/System/3.png");
+
+
+
         }
 
     public override void Render()
@@ -64,6 +113,15 @@ namespace Game
                 if (scoreMenu)
                 {
                     scoreBoard.Draw();
+                    score1.Draw();
+                    score1_1.Draw();
+                    score1_2.Draw();
+                    score1_3.Draw();
+                    score2.Draw();
+                    score2_1.Draw();
+                    score2_2.Draw();
+                    score2_3.Draw();
+                    score3.Draw();
                 }
                 if (creditsMenu)
                 {
@@ -79,7 +137,7 @@ namespace Game
         {
             if (scoreMenu)
             {
-                CheckScore();  
+              
             }
             else
             {
@@ -125,12 +183,15 @@ namespace Game
                     switch (selectedButtonIndex)
                     {
                         case 0:
+                            GameManager.Instance.ResetGame();
                             GameManager.Instance.ChangeLevel(LevelType.Level1);
                             break;
                         case 1:
                             Engine.Clear();
                             break;
                         case 2:
+                            CheckScore();
+                            
                             scoreMenu = true;
                             break;
                         case 3:
@@ -152,10 +213,118 @@ namespace Game
                 creditsMenu = false;
             }
         }
-
         public void CheckScore()
         {
+            GameManager.Instance.ScoreSort();
+            Console.WriteLine(GameManager.Instance.scoreboardList[0]);
+            Console.WriteLine(GameManager.Instance.scoreboardList[1]);
+            Console.WriteLine(GameManager.Instance.scoreboardList[2]);
 
+            if (GameManager.Instance.scoreboardList.Count > 0)
+            {
+                string[] score1 = ScoreTexture(GameManager.Instance.scoreboardList[0]);
+                Console.WriteLine(GameManager.Instance.scoreboardList[0]);
+                for (int i = 0; i < score1.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(score1[i]))
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                score1_1.CreateAsset(new TransformData(250, 150), score1[i]);
+                                Console.WriteLine($"Posicion 0 { score1[i]}");
+                                break;
+                            case 1:
+                                score1_2.CreateAsset(new TransformData(280, 150), score1[i]);
+                                Console.WriteLine($"Posicion 1 { score1[i]}");
+                                break;
+                            case 2:
+                                score1_3.CreateAsset(new TransformData(310, 150), score1[i]);
+                                Console.WriteLine($"Posicion 2 { score1[i]}");
+                                break;
+                        }
+                    }
+                }
+            }
+            if (GameManager.Instance.scoreboardList.Count > 1)
+            {
+                string[] score2 = ScoreTexture(GameManager.Instance.scoreboardList[1]);
+                Console.WriteLine(GameManager.Instance.scoreboardList[1]);
+                for (int i = 0; i < score2.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(score2[i]))
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                score2_1.CreateAsset(new TransformData(250, 200), score2[i]);
+                                Console.WriteLine($"Posicion 0 { score2[i]}");
+                                break;
+                            case 1:
+                                score2_2.CreateAsset(new TransformData(280, 200), score2[i]);
+                                Console.WriteLine($"Posicion 1 { score2[i]}");
+                                break;
+                            case 2:
+                                score2_3.CreateAsset(new TransformData(310, 200), score2[i]);
+                                Console.WriteLine($"Posicion 2 { score2[i]}");
+                                break;
+                        }
+                    }
+                }
+            }
+            if (GameManager.Instance.scoreboardList.Count > 2)
+            {
+                Console.WriteLine("Hay 3 scores");
+            }
+        }
+        public String[] ScoreTexture(int _score)
+        {
+
+            string scoreArray = _score.ToString();
+            int[] digit = new int[scoreArray.Length];
+            string[] ScoreTexture = new string[scoreArray.Length];
+            for (int i = 0; i < scoreArray.Length; i++)
+            {
+                digit[i] = int.Parse(scoreArray[i].ToString());
+                Console.Write(digit[i]);
+                switch (digit[i])
+                {
+                    case 0:
+                        ScoreTexture[i] = "Textures/System/0.png";
+                        break;
+                    case 1:
+                        ScoreTexture[i] = "Textures/System/1.png";
+                        break;
+                    case 2:
+                        ScoreTexture[i] = "Textures/System/2.png";
+                        break;
+                    case 3:
+                        ScoreTexture[i] = "Textures/System/3.png";
+                        break;
+                    case 4:
+                        ScoreTexture[i] = "Textures/System/4.png";
+                        break;
+                    case 5:
+                        ScoreTexture[i] = "Textures/System/5.png";
+                        break;
+                    case 6:
+                        ScoreTexture[i] = "Textures/System/6.png";
+                        break;
+                    case 7:
+                        ScoreTexture[i] = "Textures/System/7.png";
+                        break;
+                    case 8:
+                        ScoreTexture[i] = "Textures/System/8.png";
+                        break;
+                    case 9:
+                        ScoreTexture[i] = "Textures/System/9.png";
+                        break;
+                }
+
+            }
+            return ScoreTexture;
         }
     }
 }

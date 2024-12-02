@@ -16,8 +16,22 @@ namespace Game
 
 
         }
+        public Enemy(string _name, string _texture, string _combatTexture, float _hp, float _str, float _spd, TransformData _transform, string _icon) : base(_name,
+           _texture, _hp, _str, _spd, _transform)
+        {
+            base.name = name;
+            base.hp = hp;
+            base.str = str;
+            base.spd = spd;
+            base.transform = new TransformData(_transform.PositionX, _transform.PositionY);
+            base.renderer = new RendererComponent();
+            combatTexture = _combatTexture;
+            combatIcon = _icon;
 
-        public void CreateEnemy(TransformData _transform, string _texture)
+
+        }
+
+        public void CreateEnemy(TransformData _transform, string _texture, string _icon)
         {
             transform.PositionX = _transform.PositionX;
             transform.PositionY = _transform.PositionY;
@@ -27,6 +41,7 @@ namespace Game
             renderer.ScaleX = 1;
             renderer.ScaleY = 1;
             texture = renderer.Texture;
+            combatIcon = _icon;
         }
         public void EnemyDraw()
         {
@@ -41,6 +56,10 @@ namespace Game
             renderer.Texture = combatTexture;
             renderer.Draw();
 
+        }
+        public string GetIcon()
+        {
+            return combatIcon;
         }
 
     }
