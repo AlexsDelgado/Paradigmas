@@ -22,12 +22,13 @@ namespace Game
         private Asset score1_2;
         private Asset score1_3;
         private Asset score2;
-
         private Asset score2_1;
         private Asset score2_2;
         private Asset score2_3;
         private Asset score3;
-
+        private Asset score3_1;
+        private Asset score3_2;
+        private Asset score3_3;
         private Asset creditsBoard;
         private Asset AlexsCredits;
         private Asset MartinCredits;
@@ -91,6 +92,16 @@ namespace Game
             score3.CreateAsset(new TransformData(200, 250), "Textures/System/3.png");
 
 
+            score3_1 = new Asset();
+            score3_1.CreateAsset(new TransformData(250, 250), "Textures/System/0.png");
+
+            score3_2 = new Asset();
+            score3_2.CreateAsset(new TransformData(280, 250), "Textures/System/0.png");
+
+            score3_3 = new Asset();
+            score3_3.CreateAsset(new TransformData(310, 250), "Textures/System/0.png");
+
+
 
         }
 
@@ -122,6 +133,9 @@ namespace Game
                     score2_2.Draw();
                     score2_3.Draw();
                     score3.Draw();
+                    score3_1.Draw();
+                    score3_2.Draw();
+                    score3_3.Draw();
                 }
                 if (creditsMenu)
                 {
@@ -215,11 +229,8 @@ namespace Game
         }
         public void CheckScore()
         {
-            GameManager.Instance.ScoreSort();
-            Console.WriteLine(GameManager.Instance.scoreboardList[0]);
-            Console.WriteLine(GameManager.Instance.scoreboardList[1]);
-            Console.WriteLine(GameManager.Instance.scoreboardList[2]);
-
+            //GameManager.Instance.ScoreSort();
+        
             if (GameManager.Instance.scoreboardList.Count > 0)
             {
                 string[] score1 = ScoreTexture(GameManager.Instance.scoreboardList[0]);
@@ -276,7 +287,30 @@ namespace Game
             }
             if (GameManager.Instance.scoreboardList.Count > 2)
             {
-                Console.WriteLine("Hay 3 scores");
+                string[] score3 = ScoreTexture(GameManager.Instance.scoreboardList[2]);
+                Console.WriteLine(GameManager.Instance.scoreboardList[2]);
+                for (int i = 0; i < score3.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(score3[i]))
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                score2_1.CreateAsset(new TransformData(250, 200), score3[i]);
+                                Console.WriteLine($"Posicion 0 { score3[i]}");
+                                break;
+                            case 1:
+                                score2_2.CreateAsset(new TransformData(280, 200), score3[i]);
+                                Console.WriteLine($"Posicion 1 { score3[i]}");
+                                break;
+                            case 2:
+                                score2_3.CreateAsset(new TransformData(310, 200), score3[i]);
+                                Console.WriteLine($"Posicion 2 { score3[i]}");
+                                break;
+                        }
+                    }
+                }
             }
         }
         public String[] ScoreTexture(int _score)
